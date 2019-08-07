@@ -1,10 +1,17 @@
-<p>
-  Hello Star Wars fan!
-  <br>
+<div class="search-container">
+  <h1>Hello Star Wars fan!</h1>
+  <form [formGroup]="searchForm"
+        (submit)="search(searchForm)">
   <label>
     What you looking for?
-    <input type="text">
+    <input formControlName="search" type="text">
   </label>
-
-</p>
-
+    <button type="submit">
+      search
+    </button>
+  </form>
+</div>
+<div class="results" >{{this.results}}</div>
+<!--<audio autoplay>-->
+<!--  <source src="/src/assets/audio/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mpeg">-->
+<!--</audio>-->

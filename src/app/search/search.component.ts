@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from "../search.service";
-import {Observable} from "rxjs";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SWAPI_Answer} from "../Interfaces/swapi-answer";
 
 @Component({
   selector: 'app-search',
@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit {
     this.initForm()
   }
 
-  private results: Observable<Object>;
+  private results: SWAPI_Answer;
   private searchForm: FormGroup;
   private initForm() {
     this.searchForm = this.fb.group({
@@ -28,7 +28,6 @@ export class SearchComponent implements OnInit {
       console.error('invalid value');
       return;
     }
-    this.results = this.service.getSearch(value.search);
-    console.log(this.results);
+    this.service.getSearch(value.search).subscribe(results => this.results = results);
   }
 }

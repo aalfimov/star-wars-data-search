@@ -2,16 +2,39 @@
   <h1>Hello Star Wars fan!</h1>
   <form [formGroup]="searchForm"
         (submit)="search(searchForm)">
-  <label>
-    What you looking for?
-    <input formControlName="search" type="text">
-  </label>
-    <button type="submit">
+    <label>
+      What character are you looking for?
+      <input formControlName="search"
+             type="text">
+    </label>
+    <button class="btn btn-danger"
+            type="submit">
       search
     </button>
   </form>
 </div>
-<div class="results" >{{this.results}}</div>
+<div class="not-found"
+     *ngIf="results && results.count === 0 ">
+  <p>Not found :(</p>
+</div>
+<div class="card text-center results"
+     *ngIf="results && results.count === 1">
+  <div class="card-header">Name: {{this.results.results[0].name}}</div>
+  <div class="card-body">Height: {{this.results.results[0].height}}
+    Mass: {{this.results.results[0].mass}}
+    Hair color: {{this.results.results[0].hair_color}}
+    Skin color: {{this.results.results[0].skin_color}}
+    Eye color: {{this.results.results[0].eye_color}}
+    Birth year: {{this.results.results[0].birth_year}}
+    Gender: {{this.results.results[0].gender}}
+    Homeworld: {{this.results.results[0].homeworld}}</div>
+  <div class="card-footer text-muted">Film:
+    <ul class="film" *ngFor="let film of this.results.results[0].films">
+      <li>{{film}}</li>
+    </ul>
+  </div>
+</div>
+
 <!--<audio autoplay>-->
 <!--  <source src="/src/assets/audio/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mpeg">-->
 <!--</audio>-->

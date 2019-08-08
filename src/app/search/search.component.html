@@ -1,29 +1,32 @@
 <div class="search-container text-center">
   <h1>Hello Star Wars fan!</h1>
-  <form [formGroup]="searchForm"
+  <form class="align-content-sm-center" [formGroup]="searchForm"
         (submit)="search(searchForm)">
-    <div class="btn-group">
-      <button type="button" class="btn btn-warning">search</button>
-      <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">films</a>
-        <a class="dropdown-item" href="#">people</a>
-        <a class="dropdown-item" href="#">planets</a>
-        <a class="dropdown-item" href="#">species</a>
-        <a class="dropdown-item" href="#">starships</a>
-        <a class="dropdown-item" href="#">vehicles</a>
-      </div>
+    <div class="form-group">
+      <p>
+        What are you looking for?
+      </p>
+      <select class="custom-select" formControlName="resources" >
+        <option selected>Choose...</option>
+        <option value="films">Films</option>
+        <option value="people">People</option>
+        <option value="planets">Planets</option>
+        <option value="species">Species</option>
+        <option value="starships">Starships</option>
+        <option value="vehicles">Vehicles</option>
+      </select>
     </div>
-    <label>
-      What character are you looking for?
-      <input formControlName="search"
-             type="text">
-    </label>
-    <button class="btn btn-warning"
-            type="submit">
-      search
-    </button>
+    <div class="form-group">
+      <label>
+        <input class="input-group-sm"
+               formControlName="search"
+               type="text">
+      </label>
+      <button class="btn btn-warning"
+              type="submit">
+        search
+      </button>
+    </div>
   </form>
 </div>
 <div class="not-found"
@@ -50,7 +53,22 @@
     </ul>
   </div>
 </div>
+<p>{{results | json}}</p>
 
+
+<!--      <div class="btn-group">-->
+<!--        <button type="button" class="btn btn-warning">search</button>-->
+<!--        <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">-->
+<!--        </button>-->
+<!--        <div class="dropdown-menu">-->
+<!--          <a class="dropdown-item">films</a>-->
+<!--          <a class="dropdown-item">people</a>-->
+<!--          <a class="dropdown-item">planets</a>-->
+<!--          <a class="dropdown-item">species</a>-->
+<!--          <a class="dropdown-item">starships</a>-->
+<!--          <a class="dropdown-item">vehicles</a>-->
+<!--        </div>-->
+<!--      </div>-->
 <!--<audio autoplay>-->
 <!--  <source src="/src/assets/audio/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mpeg">-->
 <!--</audio>-->

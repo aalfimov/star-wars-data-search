@@ -15,15 +15,10 @@ export class SearchService {
   }
 
   getSearch(arg): Observable<SWAPI_Answer> {
-    return this.http.get<SWAPI_Answer>(`${this.STAR_WARS_URL}people/?search=${arg}`)
+    return this.http.get<SWAPI_Answer>(`${this.STAR_WARS_URL}${arg.resources}/?search=${arg.search}`)
   }
 
   // https://swapi.co/api/starships/64/?format=wookiee
   // `${this.STAR_WARS_URL}people/?search=${arg}`
   // /api/people/?search=r2
-  getCustomers() {
-    return this.http.get('https://swapi.co/api/people/').pipe(map(data => {
-      return data['results'];
-    }))
-  }
 }

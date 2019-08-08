@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SearchService} from "../search.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SWAPI_Answer} from "../Interfaces/swapi-answer";
@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
 
   private results: SWAPI_Answer;
   private searchForm: FormGroup;
+
   private initForm() {
     this.searchForm = this.fb.group({
       search: ['', Validators.required],
@@ -23,7 +24,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
   }
-  search({valid, value}){
+
+  search({valid, value}) {
     if (!valid) {
       console.error('invalid value');
       return;

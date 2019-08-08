@@ -1,13 +1,26 @@
-<div class="search-container">
+<div class="search-container text-center">
   <h1>Hello Star Wars fan!</h1>
   <form [formGroup]="searchForm"
         (submit)="search(searchForm)">
+    <div class="btn-group">
+      <button type="button" class="btn btn-warning">search</button>
+      <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">films</a>
+        <a class="dropdown-item" href="#">people</a>
+        <a class="dropdown-item" href="#">planets</a>
+        <a class="dropdown-item" href="#">species</a>
+        <a class="dropdown-item" href="#">starships</a>
+        <a class="dropdown-item" href="#">vehicles</a>
+      </div>
+    </div>
     <label>
       What character are you looking for?
       <input formControlName="search"
              type="text">
     </label>
-    <button class="btn btn-danger"
+    <button class="btn btn-warning"
             type="submit">
       search
     </button>
@@ -20,17 +33,20 @@
 <div class="card text-center results"
      *ngIf="results && results.count === 1">
   <div class="card-header">Name: {{this.results.results[0].name}}</div>
-  <div class="card-body">Height: {{this.results.results[0].height}}
-    Mass: {{this.results.results[0].mass}}
-    Hair color: {{this.results.results[0].hair_color}}
-    Skin color: {{this.results.results[0].skin_color}}
-    Eye color: {{this.results.results[0].eye_color}}
-    Birth year: {{this.results.results[0].birth_year}}
-    Gender: {{this.results.results[0].gender}}
-    Homeworld: {{this.results.results[0].homeworld}}</div>
+  <div class="card-body">
+    <h6>Height: {{this.results.results[0].height}}</h6>
+    <h6>Mass: {{this.results.results[0].mass}}</h6>
+    <h6>Hair color: {{this.results.results[0].hair_color}}</h6>
+    <h6>Skin color: {{this.results.results[0].skin_color}}</h6>
+    <h6>Eye color: {{this.results.results[0].eye_color}}</h6>
+    <h6>Birth year: {{this.results.results[0].birth_year}}</h6>
+    <h6>Gender: {{this.results.results[0].gender}}</h6>
+    <h6>Homeworld: <a href="{{this.results.results[0].homeworld}}">
+      {{this.results.results[0].homeworld}}</a></h6>
+  </div>
   <div class="card-footer text-muted">Film:
     <ul class="film" *ngFor="let film of this.results.results[0].films">
-      <li>{{film}}</li>
+      <li><a href="{{film}}">{{film}}</a></li>
     </ul>
   </div>
 </div>

@@ -6,7 +6,7 @@
       <p>
         What are you looking for?
       </p>
-      <select class="custom-select" formControlName="resources" >
+      <select class="custom-select" formControlName="resources">
         <option selected>Choose...</option>
         <option value="films">Films</option>
         <option value="people">People</option>
@@ -34,25 +34,73 @@
   <p>Not found :(</p>
 </div>
 <div class="card text-center results"
-     *ngIf="results && results.count === 1 && resources === 'people'">
-  <div class="card-header">Name: {{this.results.results[0].name}}</div>
+     *ngIf="results === 1 && resources === 'people'">
+
+  <div class="card-header">Name: {{this.data.name}}</div>
+
   <div class="card-body">
-    <h6>Height: {{this.results.results[0].height}}</h6>
-    <h6>Mass: {{this.results.results[0].mass}}</h6>
-    <h6>Hair color: {{this.results.results[0].hair_color}}</h6>
-    <h6>Skin color: {{this.results.results[0].skin_color}}</h6>
-    <h6>Eye color: {{this.results.results[0].eye_color}}</h6>
-    <h6>Birth year: {{this.results.results[0].birth_year}}</h6>
-    <h6>Gender: {{this.results.results[0].gender}}</h6>
-    <h6>Homeworld: <a href="{{this.results.results[0].homeworld}}">
-      {{this.results.results[0].homeworld}}</a></h6>
+    <div>Height: {{this.data.height}}</div>
+    <div>Mass: {{this.data.mass}}</div>
+    <div>Hair color: {{this.data.hair_color}}</div>
+    <div>Skin color: {{this.data.skin_color}}</div>
+    <div>Eye color: {{this.data.eye_color}}</div>
+    <div>Birth year: {{this.data.birth_year}}</div>
+    <div>Gender: {{this.data.gender}}</div>
+    <div>Homeworld: <a href="{{this.data.homeworld}}">
+      {{this.data.homeworld}}</a></div>
   </div>
+
   <div class="card-footer text-muted">Film:
-    <ul class="film" *ngFor="let film of this.results.results[0].films">
+    <ul class="film" *ngFor="let film of this.data.films">
       <li><a href="{{film}}">{{film}}</a></li>
     </ul>
   </div>
 </div>
+
+<div class="card text-center results"
+     *ngIf="results === 1 && resources === 'films'">
+
+  <div class="card-header">Title: {{this.data.title}}</div>
+  <div class="card-body">
+    <div>Episode id: {{this.data.episode_id}}</div>
+    <div>Opening crawl: {{this.data.opening_crawl}}</div>
+    <div>Director: {{this.data.director}}</div>
+    <div>Producer: {{this.data.producer}}</div>
+    <div>Release date: {{this.data.release_date | date}}</div>
+  </div>
+  <div>Characters:
+    <ul class="characters" *ngFor="let characters of this.data.characters">
+      <li><a href="{{characters}}">{{characters}}</a></li>
+    </ul>
+  </div>
+  <div>Planets:
+    <ul class="planets" *ngFor="let planets of this.data.planets">
+      <li><a href="{{planets}}">{{planets}}</a></li>
+    </ul>
+  </div>
+  <div>Starships:
+    <ul class="starships" *ngFor="let starships of this.data.starships">
+      <li><a href="{{starships}}">{{starships}}</a></li>
+    </ul>
+  </div>
+  <div>Vehicles:
+    <ul class="vehicles" *ngFor="let vehicles of this.data.vehicles">
+      <li><a href="{{vehicles}}">{{vehicles}}</a></li>
+    </ul>
+  </div>
+  <div>Species:
+    <ul class="species" *ngFor="let species of this.data.species">
+      <li><a href="{{species}}">{{species}}</a></li>
+    </ul>
+  </div>
+  <div class="card-footer text-muted">
+    <div>Created: {{this.data.created}}</div>
+    <div>Edited: {{this.data.edited}}</div>
+    <div>Url: <a href="{{this.data.url}}">
+      {{this.data.url}}</a></div>
+  </div>
+</div>
+
 <p>{{results | json}}</p>
 
 

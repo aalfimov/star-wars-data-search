@@ -3,6 +3,11 @@ import {SearchService} from "../search.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SWAPI_Answer} from "../Interfaces/swapi-answer";
 import {People} from "../Interfaces/people";
+import {Films} from "../Interfaces/films";
+import {Planets} from "../Interfaces/planets";
+import {Species} from "../Interfaces/species";
+import {Starships} from "../Interfaces/starships";
+import {Vehicles} from "../Interfaces/vehicles";
 
 @Component({
   selector: 'app-search',
@@ -12,9 +17,11 @@ import {People} from "../Interfaces/people";
 export class SearchComponent implements OnInit {
   constructor(private service: SearchService, private fb: FormBuilder) {
     this.initForm()
+
   }
 
-  private results: SWAPI_Answer;
+  private results: number;
+  private data: People | Films | Planets | Species | Starships | Vehicles;
   private searchForm: FormGroup;
   private resources: string;
 
@@ -34,22 +41,27 @@ export class SearchComponent implements OnInit {
       return;
     }
     this.resources = value.resources;
-    this.service.getSearch(value).subscribe(results => this.results = results);
-    //   switch (this.resources) {
-    //   case 'people':
-    //     let res: People[];
-    //   res = this.results.results;
-    //   break;
-    //   case 'films':
-    //   break;
-    //   case 'planets':
-    //   break;
-    //   case 'species':
-    //   break;
-    //   case 'starships':
-    //   break;
-    //   case 'vehicles':
-    //   break;
-    // }
+    return this.service.getSearch(value).subscribe(results => {
+      // this.data = this.results.results[0];
+      // this.setData();
+      this.results = results.count;
+      return this.setData(results);
+    });
+  }
+  setData(results) {
+    switch (this.resources) {
+      case 'people':
+        return this.data = results.results[0] as People;
+      case 'films':
+        return this.data = results.results[0] as Films;
+      case 'planets':
+        return this.data = results.results[0] as Planets;
+      case 'species':
+        return this.data = results.results[0] as Species;
+      case 'starships':
+        return this.data = results.results[0] as Starships;
+      case 'vehicles':
+        return this.data = results.results[0] as Vehicles;
+    }
   }
 }

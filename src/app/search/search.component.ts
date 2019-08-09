@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Resource, SearchOptions, SearchService} from "../search.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {People} from "../Interfaces/people";
-import {Films} from "../Interfaces/films";
-import {Planets} from "../Interfaces/planets";
-import {Species} from "../Interfaces/species";
-import {Starships} from "../Interfaces/starships";
-import {Vehicles} from "../Interfaces/vehicles";
+import {Resource, SearchOptions, SearchService} from '../search.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {People} from '../Interfaces/people';
+import {Films} from '../Interfaces/films';
+import {Planets} from '../Interfaces/planets';
+import {Species} from '../Interfaces/species';
+import {Starships} from '../Interfaces/starships';
+import {Vehicles} from '../Interfaces/vehicles';
 
 @Component({
   selector: 'app-search',
@@ -15,7 +15,7 @@ import {Vehicles} from "../Interfaces/vehicles";
 })
 export class SearchComponent implements OnInit {
   constructor(private service: SearchService, private fb: FormBuilder) {
-    this.initForm()
+    this.initForm();
   }
 
   private results: number;

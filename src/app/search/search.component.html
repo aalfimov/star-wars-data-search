@@ -34,7 +34,7 @@
   <p>Not found :(</p>
 </div>
 <div class="card text-center results"
-     *ngIf="results && results.count === 1">
+     *ngIf="results && results.count === 1 && resources === 'people'">
   <div class="card-header">Name: {{this.results.results[0].name}}</div>
   <div class="card-body">
     <h6>Height: {{this.results.results[0].height}}</h6>

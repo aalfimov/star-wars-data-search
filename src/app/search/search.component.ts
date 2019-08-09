@@ -35,21 +35,21 @@ export class SearchComponent implements OnInit {
     }
     this.resources = value.resources;
     this.service.getSearch(value).subscribe(results => this.results = results);
-    switch (this.resources) {
-      case 'people':
-        let res: People[];
-        res = this.results.results;
-        break;
-      case 'films':
-        break;
-      case 'planets':
-        break;
-      case 'species':
-        break;
-      case 'starships':
-        break;
-      case 'vehicles':
-        break;
+    //   switch (this.resources) {
+    //   case 'people':
+    //     let res: People[];
+    //   res = this.results.results;
+    //   break;
+    //   case 'films':
+    //   break;
+    //   case 'planets':
+    //   break;
+    //   case 'species':
+    //   break;
+    //   case 'starships':
+    //   break;
+    //   case 'vehicles':
+    //   break;
+    // }
   }
-}
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {SearchService} from "../search.service";
+import {Resource, SearchOptions, SearchService} from "../search.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SWAPI_Answer} from "../Interfaces/swapi-answer";
 import {People} from "../Interfaces/people";
 import {Films} from "../Interfaces/films";
 import {Planets} from "../Interfaces/planets";
@@ -17,7 +16,6 @@ import {Vehicles} from "../Interfaces/vehicles";
 export class SearchComponent implements OnInit {
   constructor(private service: SearchService, private fb: FormBuilder) {
     this.initForm()
-
   }
 
   private results: number;
@@ -35,15 +33,31 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  search({valid, value}) {
-    if (!valid) {
+  search() {
+    if (!this.searchForm.valid) {
       console.error('invalid value');
       return;
     }
-    this.resources = value.resources;
-    return this.service.getSearch(value).subscribe(results => {
-      // this.data = this.results.results[0];
-      // this.setData();
+
+    const value = this.searchForm.value as SearchOptions;
+
+    // switch (this.searchForm.value.resources) {
+    //   case 'people':
+    //     return  this.resources = Resource.People;
+    //   case 'films':
+    //     return this.resources = Resource.Films;
+    //   case 'planets':
+    //     return this.resources = Resource.Planets;
+    //   case 'species':
+    //     return this.resources = Resource.Species;
+    //   case 'starships':
+    //     return this.resources = Resource.Starships;
+    //   case 'vehicles':
+    //     return this.resources = Resource.Vehicles;
+    // }
+    // this.service.getSearch({resources: Resource.People, search: value.search});
+
+    return this.service.getSearch({resources: Resource.People, search: value.search}).subscribe(results => {
       this.results = results.count;
       return this.setData(results);
     });

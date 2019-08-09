@@ -2,8 +2,26 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {People} from "./Interfaces/people";
 import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
-import {SWAPI_Answer} from "./Interfaces/swapi-answer";
+import {SwapiAnswer} from "./Interfaces/swapi-answer";
+import {Films} from "./Interfaces/films";
+import {Planets} from "./Interfaces/planets";
+import {Species} from "./Interfaces/species";
+import {Starships} from "./Interfaces/starships";
+import {Vehicles} from "./Interfaces/vehicles";
+
+export enum Resource {
+  Films = 'films',
+  People = 'people',
+  Planets = 'planets',
+  Species = 'species',
+  Starships = 'starships',
+  Vehicles = 'vehicles'
+}
+
+export interface SearchOptions {
+  resources: string;
+  search: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +32,21 @@ export class SearchService {
   constructor(private http: HttpClient) {
   }
 
-  getSearch(arg): Observable<SWAPI_Answer> {
-    return this.http.get<SWAPI_Answer>(`${this.STAR_WARS_URL}${arg.resources}/?search=${arg.search}`)
+  // getSearch(options: { resources: Resource.Films, search: string }): Observable<SwapiAnswer<Films>>;
+  // getSearch(options: { resources: Resource.People, search: string }): Observable<SwapiAnswer<People>>;
+  // getSearch(options: { resources: Resource.Planets, search: string }): Observable<SwapiAnswer<Planets>>;
+  // getSearch(options: { resources: Resource.Species, search: string }): Observable<SwapiAnswer<Species>>;
+  // getSearch(options: { resources: Resource.Starships, search: string }): Observable<SwapiAnswer<Starships>>;
+  // getSearch(options: { resources: Resource.Vehicles, search: string }): Observable<SwapiAnswer<Vehicles>>;
+  getSearch<T>(options: SearchOptions) {
+    return this.http.get<SwapiAnswer>(`${this.STAR_WARS_URL}${options.resources}/`, {params: {search: options.search}})
   }
 
-  // https://swapi.co/api/starships/64/?format=wookiee
-  // `${this.STAR_WARS_URL}people/?search=${arg}`
-  // /api/people/?search=r2
+  // getFilms(search: string) {
+  //   return this.getSearch({ resources: Resource.Films, search });
+  // }
+
+  getSearchURL<T>(url: string) {
+    return this.http.get<SwapiAnswer<T>>(url)
+  }
 }

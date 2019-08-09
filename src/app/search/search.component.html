@@ -1,7 +1,8 @@
 <div class="search-container text-center">
   <h1>Hello Star Wars fan!</h1>
-  <form class="align-content-sm-center" [formGroup]="searchForm"
-        (submit)="search(searchForm)">
+  <form class="align-content-sm-center"
+        [formGroup]="searchForm"
+        (submit)="search()">
     <div class="form-group">
       <p>
         What are you looking for?
@@ -29,10 +30,12 @@
     </div>
   </form>
 </div>
+
 <div class="not-found"
-     *ngIf="results && results.count === 0 ">
+     *ngIf="results === 0 ">
   <p>Not found :(</p>
 </div>
+
 <div class="card text-center results"
      *ngIf="results === 1 && resources === 'people'">
 
@@ -50,10 +53,16 @@
       {{this.data.homeworld}}</a></div>
   </div>
 
-  <div class="card-footer text-muted">Film:
-    <ul class="film" *ngFor="let film of this.data.films">
-      <li><a href="{{film}}">{{film}}</a></li>
-    </ul>
+  <div class="card-footer text-muted">
+    <div>Film:
+      <ul class="film" *ngFor="let film of this.data.films">
+        <li><a href="{{film}}">{{film}}</a></li>
+      </ul>
+    </div>
+    <div>Created: {{this.data.created | date}}</div>
+    <div>Edited: {{this.data.edited | date}}</div>
+    <div>Url: <a href="{{this.data.url}}">
+      {{this.data.url}}</a></div>
   </div>
 </div>
 
@@ -101,7 +110,71 @@
   </div>
 </div>
 
-<p>{{results | json}}</p>
+<div class="card text-center results"
+     *ngIf="results === 1 && resources === 'planets'">
+
+  <div class="card-header">Name: {{this.data.name}}</div>
+  <div class="card-body">
+    <div>Diameter: {{this.data.diameter}}</div>
+    <div>Rotation period: {{this.data.rotation_period}}</div>
+    <div>Orbital period: {{this.data.orbital_period}}</div>
+    <div>Gravity: {{this.data.gravity}}</div>
+    <div>Population: {{this.data.population | date}}</div>
+    <div>Climate: {{this.data.climate}}</div>
+    <div>Terrain: {{this.data.terrain}}</div>
+    <div>Surface water: {{this.data.surface_water}}</div>
+    <div>Residents:
+      <ul class="planets" *ngFor="let residents of this.data.residents">
+        <li><a href="{{residents}}">{{residents}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <div>Film:
+      <ul class="film" *ngFor="let film of this.data.films">
+        <li><a href="{{film}}">{{film}}</a></li>
+      </ul>
+    </div>
+    <div>Created: {{this.data.created | date}}</div>
+    <div>Edited: {{this.data.edited | date}}</div>
+    <div>Url: <a href="{{this.data.url}}">
+      {{this.data.url}}</a></div>
+  </div>
+</div>
+
+<div class="card text-center results"
+     *ngIf="results === 1 && resources === 'Species'">
+
+  <div class="card-header">Name: {{this.data.name}}</div>
+  <div class="card-body">
+    <div>Classification: {{this.data.classification}}</div>
+    <div>Designation: {{this.data.designation}}</div>
+    <div>Average height: {{this.data.average_height}}</div>
+    <div>Eye colors: {{this.data.eye_colors}}</div>
+    <div>Hair colors: {{this.data.hair_colors}}</div>
+    <div>Skin colors: {{this.data.skin_colors}}</div>
+    <div>Language: {{this.data.language}}</div>
+    <div>Homeworld: {{this.data.homeworld}}</div>
+    <div>People:
+      <ul class="planets" *ngFor="let people of this.data.people">
+        <li><a href="{{people}}">{{people}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <div>Film:
+      <ul class="film" *ngFor="let film of this.data.films">
+        <li><a href="{{film}}">{{film}}</a></li>
+      </ul>
+    </div>
+    <div>Created: {{this.data.created | date}}</div>
+    <div>Edited: {{this.data.edited | date}}</div>
+    <div>Url: <a href="{{this.data.url}}">
+      {{this.data.url}}</a></div>
+  </div>
+</div>
+
+<p>{{data | json}}</p>
 
 
 <!--      <div class="btn-group">-->

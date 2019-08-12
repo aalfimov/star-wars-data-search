@@ -7,15 +7,17 @@
       <p>
         What are you looking for?
       </p>
-      <select class="custom-select" formControlName="resources">
-        <option selected>Choose...</option>
-        <option value="films">Films</option>
-        <option value="people">People</option>
-        <option value="planets">Planets</option>
-        <option value="species">Species</option>
-        <option value="starships">Starships</option>
-        <option value="vehicles">Vehicles</option>
-      </select>
+      <label>
+        <select class="custom-select" formControlName="resources">
+          <option selected>Choose...</option>
+          <option value="films">Films</option>
+          <option value="people">People</option>
+          <option value="planets">Planets</option>
+          <option value="species">Species</option>
+          <option value="starships">Starships</option>
+          <option value="vehicles">Vehicles</option>
+        </select>
+      </label>
     </div>
     <div class="form-group">
       <label>
@@ -40,7 +42,6 @@
      *ngIf="results === 1 && resources === 'people'">
 
   <div class="card-header">Name: {{this.data.name}}</div>
-
   <div class="card-body">
     <div>Height: {{this.data.height}}</div>
     <div>Mass: {{this.data.mass}}</div>
@@ -52,13 +53,12 @@
     <div>Homeworld: <a href="{{this.data.homeworld}}">
       {{this.data.homeworld}}</a></div>
   </div>
-
+  <div>Film:
+    <ul class="film" *ngFor="let film of this.data.films">
+      <li><a href="{{film}}">{{film}}</a></li>
+    </ul>
+  </div>
   <div class="card-footer text-muted">
-    <div>Film:
-      <ul class="film" *ngFor="let film of this.data.films">
-        <li><a href="{{film}}">{{film}}</a></li>
-      </ul>
-    </div>
     <div>Created: {{this.data.created | date}}</div>
     <div>Edited: {{this.data.edited | date}}</div>
     <div>Url: <a href="{{this.data.url}}">
@@ -128,13 +128,13 @@
         <li><a href="{{residents}}">{{residents}}</a></li>
       </ul>
     </div>
-  </div>
-  <div class="card-footer text-muted">
     <div>Film:
       <ul class="film" *ngFor="let film of this.data.films">
         <li><a href="{{film}}">{{film}}</a></li>
       </ul>
     </div>
+  </div>
+  <div class="card-footer text-muted">
     <div>Created: {{this.data.created | date}}</div>
     <div>Edited: {{this.data.edited | date}}</div>
     <div>Url: <a href="{{this.data.url}}">
@@ -143,7 +143,7 @@
 </div>
 
 <div class="card text-center results"
-     *ngIf="results === 1 && resources === 'Species'">
+     *ngIf="results === 1 && resources === 'species'">
 
   <div class="card-header">Name: {{this.data.name}}</div>
   <div class="card-body">
@@ -161,12 +161,86 @@
       </ul>
     </div>
   </div>
+  <div>Film:
+    <ul class="film" *ngFor="let film of this.data.films">
+      <li><a href="{{film}}">{{film}}</a></li>
+    </ul>
+  </div>
   <div class="card-footer text-muted">
-    <div>Film:
-      <ul class="film" *ngFor="let film of this.data.films">
-        <li><a href="{{film}}">{{film}}</a></li>
+    <div>Created: {{this.data.created | date}}</div>
+    <div>Edited: {{this.data.edited | date}}</div>
+    <div>Url: <a href="{{this.data.url}}">
+      {{this.data.url}}</a></div>
+  </div>
+</div>
+
+<div class="card text-center results"
+     *ngIf="results === 1 && resources === 'starships'">
+
+  <div class="card-header">
+    <div>Name: {{this.data.name}}</div>
+    <div>Model: {{this.data.model}}</div>
+  </div>
+  <div class="card-body">
+    <div>Starship class: {{this.data.starship_class}}</div>
+    <div>Manufacturer: {{this.data.manufacturer}}</div>
+    <div>Cost in credits: {{this.data.cost_in_credits}}</div>
+    <div>Length: {{this.data.length}}</div>
+    <div>Crew: {{this.data.crew}}</div>
+    <div>Passengers: {{this.data.passengers}}</div>
+    <div>Max atmosphering speed: {{this.data.max_atmosphering_speed}}</div>
+    <div>Hyperdrive rating: {{this.data.hyperdrive_rating}}</div>
+    <div>MGLT: {{this.data.MGLT}}</div>
+    <div>Cargo capacity: {{this.data.cargo_capacity}}</div>
+    <div>Consumables: {{this.data.consumables}}</div>
+    <div>Pilots:
+      <ul class="planets" *ngFor="let pilots of this.data.pilots">
+        <li><a href="{{pilots}}">{{pilots}}</a></li>
       </ul>
     </div>
+  </div>
+  <div>Film:
+    <ul class="film" *ngFor="let film of this.data.films">
+      <li><a href="{{film}}">{{film}}</a></li>
+    </ul>
+  </div>
+  <div class="card-footer text-muted">
+    <div>Created: {{this.data.created | date}}</div>
+    <div>Edited: {{this.data.edited | date}}</div>
+    <div>Url: <a href="{{this.data.url}}">
+      {{this.data.url}}</a></div>
+  </div>
+</div>
+
+<div class="card text-center results"
+     *ngIf="results === 1 && resources === 'vehicles'">
+
+  <div class="card-header">
+    <div>Name: {{this.data.name}}</div>
+    <div>Model: {{this.data.model}}</div>
+  </div>
+  <div class="card-body">
+    <div>Vehicle class: {{this.data.vehicle_class}}</div>
+    <div>Manufacturer: {{this.data.manufacturer}}</div>
+    <div>Cost in credits: {{this.data.cost_in_credits}}</div>
+    <div>Length: {{this.data.length}}</div>
+    <div>Crew: {{this.data.crew}}</div>
+    <div>Passengers: {{this.data.passengers}}</div>
+    <div>Max atmosphering speed: {{this.data.max_atmosphering_speed}}</div>
+    <div>Cargo capacity: {{this.data.cargo_capacity}}</div>
+    <div>Consumables: {{this.data.consumables}}</div>
+    <div>Pilots:
+      <ul class="planets" *ngFor="let pilots of this.data.pilots">
+        <li><a href="{{pilots}}">{{pilots}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div>Film:
+    <ul class="film" *ngFor="let film of this.data.films">
+      <li><a href="{{film}}">{{film}}</a></li>
+    </ul>
+  </div>
+  <div class="card-footer text-muted">
     <div>Created: {{this.data.created | date}}</div>
     <div>Edited: {{this.data.edited | date}}</div>
     <div>Url: <a href="{{this.data.url}}">
@@ -175,7 +249,6 @@
 </div>
 
 <p>{{data | json}}</p>
-
 
 <!--      <div class="btn-group">-->
 <!--        <button type="button" class="btn btn-warning">search</button>-->

@@ -18,10 +18,10 @@ export enum Resource {
   Vehicles = 'vehicles'
 }
 
-export interface SearchOptions {
-  resources: string;
-  search: string;
-}
+// export interface SearchOptions {
+//   resources: string;
+//   search: string;
+// }
 
 @Injectable({
   providedIn: 'root'
@@ -32,21 +32,14 @@ export class SearchService {
   constructor(private http: HttpClient) {
   }
 
-  getSearch(options: { resources: Resource.Films, search: string }): Observable<SwapiAnswer<Films>>;
-  getSearch(options: { resources: Resource.People, search: string }): Observable<SwapiAnswer<People>>;
-  getSearch(options: { resources: Resource.Planets, search: string }): Observable<SwapiAnswer<Planets>>;
-  getSearch(options: { resources: Resource.Species, search: string }): Observable<SwapiAnswer<Species>>;
-  getSearch(options: { resources: Resource.Starships, search: string }): Observable<SwapiAnswer<Starships>>;
-  getSearch(options: { resources: Resource.Vehicles, search: string }): Observable<SwapiAnswer<Vehicles>>;
-  getSearch<T>(options: SearchOptions) {
-    return this.http.get<SwapiAnswer<T>>(`${this.STAR_WARS_URL}${options.resources}/`, {params: {search: options.search}});
-  }
-
-  // getFilms(search: string) {
-  //   return this.getSearch({ resources: Resource.Films, search });
-  // }
-
-  getSearchURL<T>(url: string) {
-    return this.http.get<SwapiAnswer<T>>(url);
+  // getSearch(options: { resources: Resource.Films, search: string }): Observable<SwapiAnswer<Films>>;
+  // getSearch(options: { resources: Resource.People, search: string }): Observable<SwapiAnswer<People>>;
+  // getSearch(options: { resources: Resource.Planets, search: string }): Observable<SwapiAnswer<Planets>>;
+  // getSearch(options: { resources: Resource.Species, search: string }): Observable<SwapiAnswer<Species>>;
+  // getSearch(options: { resources: Resource.Starships, search: string }): Observable<SwapiAnswer<Starships>>;
+  // getSearch(options: { resources: Resource.Vehicles, search: string }): Observable<SwapiAnswer<Vehicles>>;
+  getSearch(resources, searchQuery) {
+    return this.http.get<SwapiAnswer>(`${this.STAR_WARS_URL}${resources}/`,
+      {params: {search: searchQuery}});
   }
 }

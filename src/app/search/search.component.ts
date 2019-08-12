@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Resource, SearchOptions, SearchService} from '../search.service';
+import {SearchService} from '../search.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {People} from '../Interfaces/people';
 import {Films} from '../Interfaces/films';
@@ -18,15 +18,15 @@ export class SearchComponent implements OnInit {
     this.initForm();
   }
 
-  private results: number;
-  private data: People | Films | Planets | Species | Starships | Vehicles;
   private searchForm: FormGroup;
+  private countResults: number;
   private resources: string;
+  private dataResults: People | Films | Planets | Species | Starships | Vehicles;
 
   private initForm() {
     this.searchForm = this.fb.group({
       resources: ['', Validators.required],
-      search: ['', Validators.required],
+      searchQuery: ['', Validators.required],
     });
   }
 
@@ -34,48 +34,30 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    if (!this.searchForm.valid) {
-      console.error('invalid value');
-      return;
-    }
+    this.resources = this.searchForm.value.resources;
+    // const value = this.searchForm.value as SearchOptions;
 
-    const value = this.searchForm.value as SearchOptions;
-
-    // switch (this.searchForm.value.resources) {
-    //   case 'people':
-    //     return  this.resources = Resource.People;
-    //   case 'films':
-    //     return this.resources = Resource.Films;
-    //   case 'planets':
-    //     return this.resources = Resource.Planets;
-    //   case 'species':
-    //     return this.resources = Resource.Species;
-    //   case 'starships':
-    //     return this.resources = Resource.Starships;
-    //   case 'vehicles':
-    //     return this.resources = Resource.Vehicles;
-    // }
-    // this.service.getSearch({resources: Resource.People, search: value.search});
-
-    return this.service.getSearch({resources: Resource.People, search: value.search}).subscribe(results => {
-      this.results = results.count;
-      return this.setData(results);
+    this.service.getSearch(this.searchForm.value.resources, this.searchForm.value.searchQuery).subscribe(results => {
+      this.countResults = results.count;
+      this.dataResults = results.results[0];
     });
+    // this.setData();
   }
-  setData(results) {
-    switch (this.resources) {
-      case 'people':
-        return this.data = results.results[0] as People;
-      case 'films':
-        return this.data = results.results[0] as Films;
-      case 'planets':
-        return this.data = results.results[0] as Planets;
-      case 'species':
-        return this.data = results.results[0] as Species;
-      case 'starships':
-        return this.data = results.results[0] as Starships;
-      case 'vehicles':
-        return this.data = results.results[0] as Vehicles;
-    }
-  }
+
+  // setData() {
+  //   switch (this.resources) {
+  //     case 'people':
+  //       return this.dataResults as People;
+  //     case 'films':
+  //       return this.dataResults as Films;
+  //     case 'planets':
+  //       return this.dataResults as Planets;
+  //     case 'species':
+  //       return this.dataResults as Species;
+  //     case 'starships':
+  //       return this.dataResults as Starships;
+  //     case 'vehicles':
+  //       return this.dataResults as Vehicles;
+  //   }
+  // }
 }

@@ -9,7 +9,9 @@
     <div class="search-block">
       <div class="form-group">
         <label>
-          <select class="custom-select" formControlName="resources">
+          <select class="custom-select"
+                  formControlName="resources"
+                  (change)="cleanInputValue()">
             <option value="" disabled selected hidden>Choose...</option>
             <option value="films">Films</option>
             <option value="people">People</option>
@@ -42,7 +44,8 @@
 <div class="search-results"
      *ngIf="countResults === 1"
      [ngSwitch]="resources">
-  <div class="card text-center results"
+  <div id="people card"
+       class="card text-center results"
        *ngSwitchCase="'people'">
     <div class="card-header">Name: {{this.dataResults.name}}</div>
     <div class="card-body">
@@ -53,8 +56,11 @@
       <div>Eye color: {{this.dataResults.eye_color}}</div>
       <div>Birth year: {{this.dataResults.birth_year}}</div>
       <div>Gender: {{this.dataResults.gender}}</div>
-      <div>Homeworld: <a href="{{this.dataResults.homeworld}}">
-        {{this.dataResults.homeworld}}</a></div>
+      <div>Homeworld:
+        <a (click)="getSearchFromUrl(this.dataResults.homeworld, 'planets')">
+          {{this.dataResults.homeworld}}
+        </a>
+      </div>
     </div>
     <div>Film:
       <ul class="film" *ngFor="let film of this.dataResults.films">
@@ -69,9 +75,10 @@
     </div>
   </div>
 
-  <div class="card text-center results"
+  <div id="films card"
+       class="card text-center results"
        *ngSwitchCase="'films'">
-    <div class="card-header">Title: {{this.dataResults[0].title}}</div>
+    <div class="card-header">Title: {{this.dataResults.title}}</div>
     <div class="card-body">
       <div>Episode id: {{this.dataResults.episode_id}}</div>
       <div>Opening crawl: {{this.dataResults.opening_crawl}}</div>
@@ -112,9 +119,9 @@
     </div>
   </div>
 
-  <div class="card text-center results"
+  <div id="planets card"
+       class="card text-center results"
        *ngSwitchCase="'planets'">
-
     <div class="card-header">Name: {{this.dataResults.name}}</div>
     <div class="card-body">
       <div>Diameter: {{this.dataResults.diameter}}</div>
@@ -144,9 +151,9 @@
     </div>
   </div>
 
-  <div class="card text-center results"
+  <div id="species card"
+       class="card text-center results"
        *ngSwitchCase="'species'">
-
     <div class="card-header">Name: {{this.dataResults.name}}</div>
     <div class="card-body">
       <div>Classification: {{this.dataResults.classification}}</div>
@@ -176,9 +183,9 @@
     </div>
   </div>
 
-  <div class="card text-center results"
+  <div id="starships card"
+       class="card text-center results"
        *ngSwitchCase="'starships'">
-
     <div class="card-header">
       <div>Name: {{this.dataResults.name}}</div>
       <div>Model: {{this.dataResults.model}}</div>
@@ -214,9 +221,9 @@
     </div>
   </div>
 
-  <div class="card text-center results"
+  <div id="vehicles card"
+       class="card text-center results"
        *ngSwitchCase="'vehicles'">
-
     <div class="card-header">
       <div>Name: {{this.dataResults.name}}</div>
       <div>Model: {{this.dataResults.model}}</div>

@@ -18,11 +18,6 @@ export enum Resource {
   Vehicles = 'vehicles'
 }
 
-// export interface SearchOptions {
-//   resources: string;
-//   search: string;
-// }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -41,5 +36,8 @@ export class SearchService {
   getSearch(resources, searchQuery) {
     return this.http.get<SwapiAnswer>(`${this.STAR_WARS_URL}${resources}/`,
       {params: {search: searchQuery}});
+  }
+  getSearchFromUrl(url) {
+    return this.http.get<SwapiAnswer>(url);
   }
 }

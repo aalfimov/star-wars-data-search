@@ -35,13 +35,26 @@ export class SearchComponent implements OnInit {
 
   search() {
     this.resources = this.searchForm.value.resources;
-    // const value = this.searchForm.value as SearchOptions;
+    this.service.getSearch(this.searchForm.value.resources, this.searchForm.value.searchQuery)
+      .subscribe(results => {
+        this.countResults = results.count;
+        this.dataResults = results.results[0];
+      });
+  }
 
-    this.service.getSearch(this.searchForm.value.resources, this.searchForm.value.searchQuery).subscribe(results => {
-      this.countResults = results.count;
-      this.dataResults = results.results[0];
-    });
-    // this.setData();
+  getSearchFromUrl(url, resources) {
+    this.resources = resources;
+    this.service.getSearchFromUrl(url)
+      .subscribe(results => {
+        console.log(results);
+        this.cleanInputValue();
+        this.countResults = results.count;
+        this.dataResults = results.results[0];
+      });
+  }
+
+  cleanInputValue() {
+    this.searchForm.value.searchQuery = ('');
   }
 
   // setData() {

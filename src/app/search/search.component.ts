@@ -47,7 +47,6 @@ export class SearchComponent implements OnInit {
     this.service.getSearchFromUrl(url)
       .subscribe(results => {
         console.log(results);
-        this.cleanInputValue();
         this.countResults = results.count;
         this.dataResults = results.results[0];
       });

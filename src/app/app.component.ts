@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +10,11 @@ export class AppComponent {
   constructor(private router: Router) {
   }
 
-  getSearch(resources: string, searchPhrase: string) {
-    this.router.navigate(['home'], {
-      queryParams: {
-        searchQuery: searchPhrase,
-        resources: resources
-      }
-    });
-  }
+  // getSearch(resources: string, searchPhrase: string) {
+  //   this.router.navigate(['home'], {
+  //     queryParams: {
+  //       searchQuery: searchPhrase
+  //     }
+  //   });
+  // }
 }

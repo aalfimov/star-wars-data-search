@@ -5,17 +5,17 @@ import {SearchService} from '../search.service';
 import {SwapiAnswer} from '../Interfaces/swapi-answer';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class SearchResultResolver implements Resolve<Observable<SwapiAnswer>> {
 
-  constructor(private searchService: SearchService) {
-  }
+    constructor(private searchService: SearchService) {
+    }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<SwapiAnswer> {
-    // const searchQuery = route.queryParamMap.get('searchQuery');
-    //     // const resources = route.queryParamMap.get('resources');
-    //     // return this.searchService.getSearch(resources, searchQuery);
-    return ;
-  }
+    resolve(route: ActivatedRouteSnapshot): Observable<SwapiAnswer> {
+        // const searchQuery = route.queryParamMap.get('searchQuery');
+        //     // const resources = route.queryParamMap.get('resources');
+        //     // return this.searchService.getSearch(resources, searchQuery);
+        return;
+    }
 }

@@ -11,7 +11,7 @@
                 <label>
                     <select class="custom-select"
                             formControlName="resources"
-                            >
+                    >
                         <option value="" disabled selected hidden>
                             Choose...
                         </option>
@@ -37,225 +37,227 @@
         </div>
     </form>
 </div>
-<!--(change)="cleanInputValue()"-->
+
 <div class="not-found text-center"
      *ngIf="countResults === 0 ">
-    <p>Not found :(</p>
+    <h1>Not found :(</h1>
 </div>
 
 <div class="search-results"
-     *ngIf="countResults === 1"
+     *ngIf="countResults"
      [ngSwitch]="resources">
-    <div id="people card"
-         class="card text-center results"
-         *ngSwitchCase="'people'">
-        <div class="card-header">Name: {{dataResults.name}}</div>
-        <div class="card-body">
-            <div>Height: {{dataResults.height}}</div>
-            <div>Mass: {{dataResults.mass}}</div>
-            <div>Hair color: {{dataResults.hair_color}}</div>
-            <div>Skin color: {{dataResults.skin_color}}</div>
-            <div>Eye color: {{dataResults.eye_color}}</div>
-            <div>Birth year: {{dataResults.birth_year}}</div>
-            <div>Gender: {{dataResults.gender}}</div>
-            <div>Homeworld:
-                <a href="{{dataResults.homeworld}}">
-                    {{dataResults.homeworld}}
-                </a>
+    <div *ngFor="let dataResults of dataResults">
+        <div id="people card"
+             class="card text-center results"
+             *ngSwitchCase="'people'">
+            <div class="card-header">Name: {{dataResults.name}}</div>
+            <div class="card-body">
+                <div>Height: {{dataResults.height}}</div>
+                <div>Mass: {{dataResults.mass}}</div>
+                <div>Hair color: {{dataResults.hair_color}}</div>
+                <div>Skin color: {{dataResults.skin_color}}</div>
+                <div>Eye color: {{dataResults.eye_color}}</div>
+                <div>Birth year: {{dataResults.birth_year}}</div>
+                <div>Gender: {{dataResults.gender}}</div>
+                <div>Homeworld:
+                    <a href="{{dataResults.homeworld}}">
+                        {{dataResults.homeworld}}
+                    </a>
+                </div>
+                <div>Film:
+                    <ul class="film" *ngFor="let film of dataResults.films">
+                        <li><a href="{{film}}">{{film}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <div>Created: {{dataResults.created | date}}</div>
+                <div>Edited: {{dataResults.edited | date}}</div>
+                <div>Url: <a href="{{dataResults.url}}">
+                    {{dataResults.url}}</a></div>
             </div>
         </div>
-        <div>Film:
-            <ul class="film" *ngFor="let film of dataResults.films">
-                <li><a href="{{film}}">{{film}}</a></li>
-            </ul>
-        </div>
-        <div class="card-footer text-muted">
-            <div>Created: {{dataResults.created | date}}</div>
-            <div>Edited: {{dataResults.edited | date}}</div>
-            <div>Url: <a href="{{dataResults.url}}">
-                {{dataResults.url}}</a></div>
-        </div>
-    </div>
 
-    <div id="films card"
-         class="card text-center results"
-         *ngSwitchCase="'films'">
-        <div class="card-header">Title: {{dataResults.title}}</div>
-        <div class="card-body">
-            <div>Episode id: {{dataResults.episode_id}}</div>
-            <div>Opening crawl: {{dataResults.opening_crawl}}</div>
-            <div>Director: {{dataResults.director}}</div>
-            <div>Producer: {{dataResults.producer}}</div>
-            <div>Release date: {{dataResults.release_date | date}}</div>
+        <div id="films card"
+             class="card text-center results"
+             *ngSwitchCase="'films'">
+            <div class="card-header">Title: {{dataResults.title}}</div>
+            <div class="card-body">
+                <div>Episode id: {{dataResults.episode_id}}</div>
+                <div>Opening crawl: {{dataResults.opening_crawl}}</div>
+                <div>Director: {{dataResults.director}}</div>
+                <div>Producer: {{dataResults.producer}}</div>
+                <div>Release date: {{dataResults.release_date | date}}</div>
+                <div>Characters:
+                    <ul class="characters" *ngFor="let characters of dataResults.characters">
+                        <li><a href="{{characters}}">{{characters}}</a></li>
+                    </ul>
+                </div>
+                <div>Planets:
+                    <ul class="planets" *ngFor="let planets of dataResults.planets">
+                        <li><a href="{{planets}}">{{planets}}</a></li>
+                    </ul>
+                </div>
+                <div>Starships:
+                    <ul class="starships" *ngFor="let starships of dataResults.starships">
+                        <li><a href="{{starships}}">{{starships}}</a></li>
+                    </ul>
+                </div>
+                <div>Vehicles:
+                    <ul class="vehicles" *ngFor="let vehicles of dataResults.vehicles">
+                        <li><a href="{{vehicles}}">{{vehicles}}</a></li>
+                    </ul>
+                </div>
+                <div>Species:
+                    <ul class="species" *ngFor="let species of dataResults.species">
+                        <li><a href="{{species}}">{{species}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <div>Created: {{dataResults.created}}</div>
+                <div>Edited: {{dataResults.edited}}</div>
+                <div>Url: <a href="{{dataResults.url}}">
+                    {{dataResults.url}}</a></div>
+            </div>
         </div>
-        <div>Characters:
-            <ul class="characters" *ngFor="let characters of dataResults.characters">
-                <li><a href="{{characters}}">{{characters}}</a></li>
-            </ul>
-        </div>
-        <div>Planets:
-            <ul class="planets" *ngFor="let planets of dataResults.planets">
-                <li><a href="{{planets}}">{{planets}}</a></li>
-            </ul>
-        </div>
-        <div>Starships:
-            <ul class="starships" *ngFor="let starships of dataResults.starships">
-                <li><a href="{{starships}}">{{starships}}</a></li>
-            </ul>
-        </div>
-        <div>Vehicles:
-            <ul class="vehicles" *ngFor="let vehicles of dataResults.vehicles">
-                <li><a href="{{vehicles}}">{{vehicles}}</a></li>
-            </ul>
-        </div>
-        <div>Species:
-            <ul class="species" *ngFor="let species of dataResults.species">
-                <li><a href="{{species}}">{{species}}</a></li>
-            </ul>
-        </div>
-        <div class="card-footer text-muted">
-            <div>Created: {{dataResults.created}}</div>
-            <div>Edited: {{dataResults.edited}}</div>
-            <div>Url: <a href="{{dataResults.url}}">
-                {{dataResults.url}}</a></div>
-        </div>
-    </div>
 
-    <div id="planets card"
-         class="card text-center results"
-         *ngSwitchCase="'planets'">
-        <div class="card-header">Name: {{dataResults.name}}</div>
-        <div class="card-body">
-            <div>Diameter: {{dataResults.diameter}}</div>
-            <div>Rotation period: {{dataResults.rotation_period}}</div>
-            <div>Orbital period: {{dataResults.orbital_period}}</div>
-            <div>Gravity: {{dataResults.gravity}}</div>
-            <div>Population: {{dataResults.population | date}}</div>
-            <div>Climate: {{dataResults.climate}}</div>
-            <div>Terrain: {{dataResults.terrain}}</div>
-            <div>Surface water: {{dataResults.surface_water}}</div>
-            <div>Residents:
-                <ul class="planets" *ngFor="let residents of dataResults.residents">
-                    <li><a href="{{residents}}">{{residents}}</a></li>
-                </ul>
+        <div id="planets card"
+             class="card text-center results"
+             *ngSwitchCase="'planets'">
+            <div class="card-header">Name: {{dataResults.name}}</div>
+            <div class="card-body">
+                <div>Diameter: {{dataResults.diameter}}</div>
+                <div>Rotation period: {{dataResults.rotation_period}}</div>
+                <div>Orbital period: {{dataResults.orbital_period}}</div>
+                <div>Gravity: {{dataResults.gravity}}</div>
+                <div>Population: {{dataResults.population | date}}</div>
+                <div>Climate: {{dataResults.climate}}</div>
+                <div>Terrain: {{dataResults.terrain}}</div>
+                <div>Surface water: {{dataResults.surface_water}}</div>
+                <div>Residents:
+                    <ul class="planets" *ngFor="let residents of dataResults.residents">
+                        <li><a href="{{residents}}">{{residents}}</a></li>
+                    </ul>
+                </div>
+                <div>Film:
+                    <ul class="film" *ngFor="let film of dataResults.films">
+                        <li><a href="{{film}}">{{film}}</a></li>
+                    </ul>
+                </div>
             </div>
-            <div>Film:
-                <ul class="film" *ngFor="let film of dataResults.films">
-                    <li><a href="{{film}}">{{film}}</a></li>
-                </ul>
+            <div class="card-footer text-muted">
+                <div>Created: {{dataResults.created | date}}</div>
+                <div>Edited: {{dataResults.edited | date}}</div>
+                <div>Url: <a href="{{dataResults.url}}">
+                    {{dataResults.url}}</a></div>
             </div>
         </div>
-        <div class="card-footer text-muted">
-            <div>Created: {{dataResults.created | date}}</div>
-            <div>Edited: {{dataResults.edited | date}}</div>
-            <div>Url: <a href="{{dataResults.url}}">
-                {{dataResults.url}}</a></div>
-        </div>
-    </div>
 
-    <div id="species card"
-         class="card text-center results"
-         *ngSwitchCase="'species'">
-        <div class="card-header">Name: {{dataResults.name}}</div>
-        <div class="card-body">
-            <div>Classification: {{dataResults.classification}}</div>
-            <div>Designation: {{dataResults.designation}}</div>
-            <div>Average height: {{dataResults.average_height}}</div>
-            <div>Eye colors: {{dataResults.eye_colors}}</div>
-            <div>Hair colors: {{dataResults.hair_colors}}</div>
-            <div>Skin colors: {{dataResults.skin_colors}}</div>
-            <div>Language: {{dataResults.language}}</div>
-            <div>Homeworld: {{dataResults.homeworld}}</div>
-            <div>People:
-                <ul class="planets" *ngFor="let people of dataResults.people">
-                    <li><a href="{{people}}">{{people}}</a></li>
-                </ul>
+        <div id="species card"
+             class="card text-center results"
+             *ngSwitchCase="'species'">
+            <div class="card-header">Name: {{dataResults.name}}</div>
+            <div class="card-body">
+                <div>Classification: {{dataResults.classification}}</div>
+                <div>Designation: {{dataResults.designation}}</div>
+                <div>Average height: {{dataResults.average_height}}</div>
+                <div>Eye colors: {{dataResults.eye_colors}}</div>
+                <div>Hair colors: {{dataResults.hair_colors}}</div>
+                <div>Skin colors: {{dataResults.skin_colors}}</div>
+                <div>Language: {{dataResults.language}}</div>
+                <div>Homeworld: {{dataResults.homeworld}}</div>
+                <div>People:
+                    <ul class="planets" *ngFor="let people of dataResults.people">
+                        <li><a href="{{people}}">{{people}}</a></li>
+                    </ul>
+                </div>
+                <div>Film:
+                    <ul class="film" *ngFor="let film of dataResults.films">
+                        <li><a href="{{film}}">{{film}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <div>Created: {{dataResults.created | date}}</div>
+                <div>Edited: {{dataResults.edited | date}}</div>
+                <div>Url: <a href="{{dataResults.url}}">
+                    {{dataResults.url}}</a></div>
             </div>
         </div>
-        <div>Film:
-            <ul class="film" *ngFor="let film of dataResults.films">
-                <li><a href="{{film}}">{{film}}</a></li>
-            </ul>
-        </div>
-        <div class="card-footer text-muted">
-            <div>Created: {{dataResults.created | date}}</div>
-            <div>Edited: {{dataResults.edited | date}}</div>
-            <div>Url: <a href="{{dataResults.url}}">
-                {{dataResults.url}}</a></div>
-        </div>
-    </div>
 
-    <div id="starships card"
-         class="card text-center results"
-         *ngSwitchCase="'starships'">
-        <div class="card-header">
-            <div>Name: {{dataResults.name}}</div>
-            <div>Model: {{dataResults.model}}</div>
-        </div>
-        <div class="card-body">
-            <div>Starship class: {{dataResults.starship_class}}</div>
-            <div>Manufacturer: {{dataResults.manufacturer}}</div>
-            <div>Cost in credits: {{dataResults.cost_in_credits}}</div>
-            <div>Length: {{dataResults.length}}</div>
-            <div>Crew: {{dataResults.crew}}</div>
-            <div>Passengers: {{dataResults.passengers}}</div>
-            <div>Max atmosphering speed: {{dataResults.max_atmosphering_speed}}</div>
-            <div>Hyperdrive rating: {{dataResults.hyperdrive_rating}}</div>
-            <div>MGLT: {{dataResults.MGLT}}</div>
-            <div>Cargo capacity: {{dataResults.cargo_capacity}}</div>
-            <div>Consumables: {{dataResults.consumables}}</div>
-            <div>Pilots:
-                <ul class="planets" *ngFor="let pilots of dataResults.pilots">
-                    <li><a href="{{pilots}}">{{pilots}}</a></li>
-                </ul>
+        <div id="starships card"
+             class="card text-center results"
+             *ngSwitchCase="'starships'">
+            <div class="card-header">
+                <div>Name: {{dataResults.name}}</div>
+                <div>Model: {{dataResults.model}}</div>
+            </div>
+            <div class="card-body">
+                <div>Starship class: {{dataResults.starship_class}}</div>
+                <div>Manufacturer: {{dataResults.manufacturer}}</div>
+                <div>Cost in credits: {{dataResults.cost_in_credits}}</div>
+                <div>Length: {{dataResults.length}}</div>
+                <div>Crew: {{dataResults.crew}}</div>
+                <div>Passengers: {{dataResults.passengers}}</div>
+                <div>Max atmosphering speed: {{dataResults.max_atmosphering_speed}}</div>
+                <div>Hyperdrive rating: {{dataResults.hyperdrive_rating}}</div>
+                <div>MGLT: {{dataResults.MGLT}}</div>
+                <div>Cargo capacity: {{dataResults.cargo_capacity}}</div>
+                <div>Consumables: {{dataResults.consumables}}</div>
+                <div>Pilots:
+                    <ul class="planets" *ngFor="let pilots of dataResults.pilots">
+                        <li><a href="{{pilots}}">{{pilots}}</a></li>
+                    </ul>
+                </div>
+                <div>Film:
+                    <ul class="film" *ngFor="let film of dataResults.films">
+                        <li><a href="{{film}}">{{film}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <div>Created: {{dataResults.created | date}}</div>
+                <div>Edited: {{dataResults.edited | date}}</div>
+                <div>Url: <a href="{{dataResults.url}}">
+                    {{dataResults.url}}</a></div>
             </div>
         </div>
-        <div>Film:
-            <ul class="film" *ngFor="let film of dataResults.films">
-                <li><a href="{{film}}">{{film}}</a></li>
-            </ul>
-        </div>
-        <div class="card-footer text-muted">
-            <div>Created: {{dataResults.created | date}}</div>
-            <div>Edited: {{dataResults.edited | date}}</div>
-            <div>Url: <a href="{{dataResults.url}}">
-                {{dataResults.url}}</a></div>
-        </div>
-    </div>
 
-    <div id="vehicles card"
-         class="card text-center results"
-         *ngSwitchCase="'vehicles'">
-        <div class="card-header">
-            <div>Name: {{dataResults.name}}</div>
-            <div>Model: {{dataResults.model}}</div>
-        </div>
-        <div class="card-body">
-            <div>Vehicle class: {{dataResults.vehicle_class}}</div>
-            <div>Manufacturer: {{dataResults.manufacturer}}</div>
-            <div>Cost in credits: {{dataResults.cost_in_credits}}</div>
-            <div>Length: {{dataResults.length}}</div>
-            <div>Crew: {{dataResults.crew}}</div>
-            <div>Passengers: {{dataResults.passengers}}</div>
-            <div>Max atmosphering speed: {{dataResults.max_atmosphering_speed}}</div>
-            <div>Cargo capacity: {{dataResults.cargo_capacity}}</div>
-            <div>Consumables: {{dataResults.consumables}}</div>
-            <div>Pilots:
-                <ul class="planets" *ngFor="let pilots of dataResults.pilots">
-                    <li><a href="{{pilots}}">{{pilots}}</a></li>
-                </ul>
+        <div id="vehicles card"
+             class="card text-center results"
+             *ngSwitchCase="'vehicles'">
+            <div class="card-header">
+                <div>Name: {{dataResults.name}}</div>
+                <div>Model: {{dataResults.model}}</div>
             </div>
-        </div>
-        <div>Film:
-            <ul class="film" *ngFor="let film of dataResults.films">
-                <li><a href="{{film}}">{{film}}</a></li>
-            </ul>
-        </div>
-        <div class="card-footer text-muted">
-            <div>Created: {{dataResults.created | date}}</div>
-            <div>Edited: {{dataResults.edited | date}}</div>
-            <div>Url: <a href="{{dataResults.url}}">
-                {{dataResults.url}}</a></div>
+            <div class="card-body">
+                <div>Vehicle class: {{dataResults.vehicle_class}}</div>
+                <div>Manufacturer: {{dataResults.manufacturer}}</div>
+                <div>Cost in credits: {{dataResults.cost_in_credits}}</div>
+                <div>Length: {{dataResults.length}}</div>
+                <div>Crew: {{dataResults.crew}}</div>
+                <div>Passengers: {{dataResults.passengers}}</div>
+                <div>Max atmosphering speed: {{dataResults.max_atmosphering_speed}}</div>
+                <div>Cargo capacity: {{dataResults.cargo_capacity}}</div>
+                <div>Consumables: {{dataResults.consumables}}</div>
+                <div>Pilots:
+                    <ul class="planets" *ngFor="let pilots of dataResults.pilots">
+                        <li><a href="{{pilots}}">{{pilots}}</a></li>
+                    </ul>
+                </div>
+                <div>Film:
+                    <ul class="film" *ngFor="let film of dataResults.films">
+                        <li><a href="{{film}}">{{film}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <div>Created: {{dataResults.created | date}}</div>
+                <div>Edited: {{dataResults.edited | date}}</div>
+                <div>Url: <a href="{{dataResults.url}}">
+                    {{dataResults.url}}</a></div>
+            </div>
         </div>
     </div>
 </div>

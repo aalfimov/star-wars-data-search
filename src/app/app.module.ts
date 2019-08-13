@@ -7,19 +7,19 @@ import {SearchComponent} from './search/search.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SearchComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    HttpClientJsonpModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SearchComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        HttpClientJsonpModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

@@ -34,10 +34,12 @@ export class SearchService {
   // getSearch(options: { resources: Resource.Starships, search: string }): Observable<SwapiAnswer<Starships>>;
   // getSearch(options: { resources: Resource.Vehicles, search: string }): Observable<SwapiAnswer<Vehicles>>;
   getSearch(resources, searchQuery) {
-    return this.http.get<SwapiAnswer>(`${this.STAR_WARS_URL}${resources}/`,
-      {params: {search: searchQuery}});
+    if(resources && searchQuery){
+      return this.http.get<SwapiAnswer>(`${this.STAR_WARS_URL}${resources}/`,
+        {params: {search: searchQuery}});
+    }
   }
-  getSearchFromUrl(url) {
-    return this.http.get<SwapiAnswer>(url);
-  }
+  // getSearchFromUrl(url) {
+  //   return this.http.get<SwapiAnswer>(url);
+  // }
 }

@@ -7,6 +7,8 @@ import {Planets} from '../Interfaces/planets';
 import {Species} from '../Interfaces/species';
 import {Starships} from '../Interfaces/starships';
 import {Vehicles} from '../Interfaces/vehicles';
+import {ActivatedRoute} from "@angular/router";
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-search',
@@ -14,7 +16,10 @@ import {Vehicles} from '../Interfaces/vehicles';
   styleUrls: ['./search.component.sass']
 })
 export class SearchComponent implements OnInit {
-  constructor(private service: SearchService, private fb: FormBuilder) {
+  constructor(private service: SearchService,
+              private fb: FormBuilder,
+              private route: ActivatedRoute,
+              private appcomp: AppComponent) {
     this.initForm();
   }
 
@@ -31,22 +36,20 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParamMap.subscribe(params => {
+      this.updateValue(params.get('resources'), params.get('searchQuery'));
+    });
+  }
+
+  updateValue(resources: string, searchQuery: string) {
+    return this.searchForm.setValue({resources: resources, searchQuery: searchQuery});
   }
 
   search() {
+    this.appcomp.getSearch(this.searchForm.value.resources, this.searchForm.value.searchQuery);
     this.resources = this.searchForm.value.resources;
     this.service.getSearch(this.searchForm.value.resources, this.searchForm.value.searchQuery)
       .subscribe(results => {
-        this.countResults = results.count;
-        this.dataResults = results.results[0];
-      });
-  }
-
-  getSearchFromUrl(url, resources) {
-    this.resources = resources;
-    this.service.getSearchFromUrl(url)
-      .subscribe(results => {
-        console.log(results);
         this.countResults = results.count;
         this.dataResults = results.results[0];
       });
@@ -56,6 +59,15 @@ export class SearchComponent implements OnInit {
     this.searchForm.value.searchQuery = ('');
   }
 
+  // getSearchFromUrl(url, resources) {
+  //   this.resources = resources;
+  //   this.service.getSearchFromUrl(url)
+  //     .subscribe(results => {
+  //       console.log(results);
+  //       this.countResults = results.count;
+  //       this.dataResults = results.results[0];
+  //     });
+  // }
   // setData() {
   //   switch (this.resources) {
   //     case 'people':

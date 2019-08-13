@@ -1,12 +1,17 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {SearchComponent} from "./search/search.component";
+import {SearchResultResolver} from "./search/search-result-resolver.service";
 
 const routes: Routes = [
-  {path: 'home', component: SearchComponent},
+  {path: 'home',
+    component: SearchComponent,
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    resolve: {
+      resultsList: SearchResultResolver
+    }},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

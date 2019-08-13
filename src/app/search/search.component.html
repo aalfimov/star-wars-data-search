@@ -12,7 +12,9 @@
           <select class="custom-select"
                   formControlName="resources"
                   (change)="cleanInputValue()">
-            <option value="" disabled selected hidden>Choose...</option>
+            <option value="" disabled selected hidden>
+              Choose...
+            </option>
             <option value="films">Films</option>
             <option value="people">People</option>
             <option value="planets">Planets</option>
@@ -57,7 +59,7 @@
       <div>Birth year: {{this.dataResults.birth_year}}</div>
       <div>Gender: {{this.dataResults.gender}}</div>
       <div>Homeworld:
-        <a (click)="getSearchFromUrl(this.dataResults.homeworld, 'planets')">
+        <a href="{{this.dataResults.homeworld}}">
           {{this.dataResults.homeworld}}
         </a>
       </div>

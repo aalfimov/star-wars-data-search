@@ -13,9 +13,8 @@ export class SearchResultResolver implements Resolve<Observable<SwapiAnswer>> {
     }
 
     resolve(route: ActivatedRouteSnapshot): Observable<SwapiAnswer> {
-        // const searchQuery = route.queryParamMap.get('searchQuery');
-        //     // const resources = route.queryParamMap.get('resources');
-        //     // return this.searchService.getSearch(resources, searchQuery);
-        return;
+        const searchQuery = route.queryParamMap.get('search');
+        const resources = route.queryParamMap.get('resource');
+        return this.searchService.getSearch(resources, searchQuery);
     }
 }

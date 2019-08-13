@@ -26,12 +26,10 @@ export class SearchComponent implements OnInit {
 
     ngOnInit() {
         this.initForm();
-        if (this.searchForm.valid) {
-            this.search();
-        }
         this.route.queryParamMap.subscribe(params => {
             this.updateValue(params.get('resource'), params.get('search'));
         });
+        this.routeDataSubscription();
     }
     private initForm() {
         this.searchForm = this.fb.group({
@@ -41,6 +39,7 @@ export class SearchComponent implements OnInit {
     }
 
     updateValue(resource: string, search: string) {
+        this.resources = resource;
         return this.searchForm.setValue({resources: resource, searchQuery: search});
     }
 
@@ -48,11 +47,13 @@ export class SearchComponent implements OnInit {
         this.appcomp.getSearch(this.searchForm.value.resources, this.searchForm.value.searchQuery);
         this.resources = this.searchForm.value.resources;
         this.countResults = null;
-        this.service.getSearch(this.searchForm.value.resources, this.searchForm.value.searchQuery)
-            .subscribe(results => {
-                this.countResults = results.count;
-                this.dataResults = results.results;
-                console.log(results);
-            });
+    }
+
+    private routeDataSubscription() {
+        this.route.data.subscribe(results => {
+            this.countResults = results.resultsList.count;
+            this.dataResults = results.resultsList.results;
+            console.log(this.resources);
+        });
     }
 }

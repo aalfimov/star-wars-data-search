@@ -4,16 +4,12 @@ import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {SearchComponent} from './search/search.component';
-import {SearchResultComponent} from './search-result/search-result.component';
 import {ReactiveFormsModule} from '@angular/forms';
-
-
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    SearchResultComponent
   ],
   imports: [
     BrowserModule,

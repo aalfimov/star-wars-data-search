@@ -2,19 +2,29 @@ import {Component, OnInit} from '@angular/core';
 import {SearchService} from '../search.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {SearchResultComponent} from '../search-result/search-result.component';
+import {AppComponent} from "../app.component";
+import {People} from "../Interfaces/people";
+import {Films} from "../Interfaces/films";
+import {Planets} from "../Interfaces/planets";
+import {Species} from "../Interfaces/species";
+import {Starships} from "../Interfaces/starships";
+import {Vehicles} from "../Interfaces/vehicles";
 
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.sass']
+  styleUrls: ['./search.component.sass'],
 })
 export class SearchComponent implements OnInit {
+  private countResults: number;
+  value;
+  resources: string;
+  private dataResults: People | Films | Planets | Species | Starships | Vehicles;
   constructor(private service: SearchService,
               private fb: FormBuilder,
               private route: ActivatedRoute,
-              private results: SearchResultComponent) {
+              private appcomp: AppComponent) {
     this.initForm();
   }
 
@@ -31,9 +41,9 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
       this.updateValue(params.get('resources'), params.get('searchQuery'));
-      if (this.searchForm.valid) {
-        this.results.search();
-      }
+      // if (this.searchForm.valid) {
+      //   this.results.search();
+      // }
     });
   }
 
@@ -46,6 +56,14 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.results.search();
+    this.appcomp.getSearch(this.value.resources, this.value.searchQuery);
+    this.service.getSearch(this.value.resources, this.value.searchQuery)
+      .subscribe(results => {
+        this.countResults = results.count;
+        this.dataResults = results.results[0];
+      });
   }
+  // search() {
+  //   this.results.search();
+  // }
 }

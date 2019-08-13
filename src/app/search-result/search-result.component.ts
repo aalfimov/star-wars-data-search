@@ -24,7 +24,6 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit() {
   }
-
   search() {
     this.appcomp.getSearch(this.value.resources, this.value.searchQuery);
     this.service.getSearch(this.value.resources, this.value.searchQuery)

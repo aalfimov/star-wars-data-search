@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchService} from '../search.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from "@angular/router";
-import {SearchResultComponent} from "../search-result/search-result.component";
+import {ActivatedRoute} from '@angular/router';
+import {SearchResultComponent} from '../search-result/search-result.component';
+
 
 @Component({
   selector: 'app-search',

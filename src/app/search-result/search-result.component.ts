@@ -18,17 +18,9 @@ export class SearchResultComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.resources = this.searchResources.getResources();
-    this.countResults = this.searchResources.getCountResults();
-    this.dataResults = this.searchResources.getDataResults();
     this.routeDataSubscription();
   }
 
-  // ngOnChanges() {
-  //   this.resources = this.searchResources.getResources();
-  //   this.countResults = this.searchResources.getCountResults();
-  //   this.dataResults = this.searchResources.getDataResults();
-  // }
   private routeDataSubscription() {
     this.route.data.subscribe(results => {
       if (results.resultsList) {

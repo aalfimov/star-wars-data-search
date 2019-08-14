@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SearchService} from "../search.service";
-import {UniversalData} from "../Interfaces/universal-data";
+import {SearchService} from '../search.service';
+import {UniversalData} from '../Interfaces/universal-data';
 
 @Component({
   selector: 'app-small-card',
@@ -9,16 +9,18 @@ import {UniversalData} from "../Interfaces/universal-data";
 })
 export class SmallCardComponent implements OnInit {
   @Input() private url: string;
-  private dataResults: UniversalData;
+  private dataResults = {name: ''};
+  @Input() private resources = 'peoples';
   constructor(private service: SearchService) { }
 
   ngOnInit() {
-    this.searchFromUrl()
+    this.searchFromUrl();
   }
-  searchFromUrl(){
-    this.service.getSearchFromUrl(this.url).subscribe(results =>{
-      this.dataResults = results.results[0];
-      console.log(results);
+  searchFromUrl() {
+    this.service.getSearchFromUrl(this.url).subscribe(results => {
+        if (results.name) {
+          this.dataResults = results;
+        }
     });
   }
 }

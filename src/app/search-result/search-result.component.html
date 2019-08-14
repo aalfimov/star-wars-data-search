@@ -20,12 +20,7 @@
           <div>Eye color: {{dataResults.eye_color}}</div>
           <div>Birth year: {{dataResults.birth_year}}</div>
           <div>Gender: {{dataResults.gender}}</div>
-          <div>Homeworld:
-            <app-small-card [url]="dataResults.homeworld"></app-small-card>
-<!--            <a (change)="searchFromUrl(dataResults.homeworld)">-->
-<!--              -->
-<!--            </a>-->
-          </div>
+          <div class="small-card"><h6>Homeworld:</h6><app-small-card [url]="dataResults.homeworld" [resources]="'planets'"></app-small-card></div>
           <div>Film:
             <ul class="film" *ngFor="let film of dataResults.films">
               <li><a href="{{film}}">{{film}}</a></li>

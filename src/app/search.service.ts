@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SwapiAnswer} from './Interfaces/swapi-answer';
+import {UniversalData} from './Interfaces/universal-data';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,6 @@ export class SearchService {
     }
   }
   getSearchFromUrl(url) {
-    return this.http.get<SwapiAnswer>(url);
+    return this.http.get<UniversalData>(url);
   }
 }

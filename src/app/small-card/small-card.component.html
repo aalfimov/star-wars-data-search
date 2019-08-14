@@ -1,1 +1,8 @@
-<p>{{this.dataResults.name}}</p>
+<div [ngSwitch]="resources">
+    <div *ngSwitchCase="'planets'">
+        <h6 *ngIf="dataResults.name">{{dataResults.name}}</h6>
+    </div>
+    <div *ngSwitchCase="'films'">
+        <h6>{{dataResults.title}}</h6>
+    </div>
+</div>

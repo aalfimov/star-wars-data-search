@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {UniversalData} from "../Interfaces/universal-data";
 import {ActivatedRoute} from "@angular/router";
 import {SearchComponent} from "../search/search.component";
@@ -12,19 +12,29 @@ export class SearchResultComponent implements OnInit {
   private countResults: number = null;
   private dataResults: UniversalData[];
   private resources: string;
+
   constructor(private route: ActivatedRoute,
-              private searchResources: SearchComponent) { }
+              private searchResources: SearchComponent) {
+  }
 
   ngOnInit() {
-    this.resources = this.searchResources.resources;
+    this.resources = this.searchResources.getResources();
+    this.countResults = this.searchResources.getCountResults();
+    this.dataResults = this.searchResources.getDataResults();
     this.routeDataSubscription();
   }
+
+  // ngOnChanges() {
+  //   this.resources = this.searchResources.getResources();
+  //   this.countResults = this.searchResources.getCountResults();
+  //   this.dataResults = this.searchResources.getDataResults();
+  // }
   private routeDataSubscription() {
     this.route.data.subscribe(results => {
-      if(results.resultsList) {
+      if (results.resultsList) {
         this.countResults = results.resultsList.count;
         this.dataResults = results.resultsList.results;
-        console.log(results);
+        this.resources = this.searchResources.getResources();
       }
     });
   }

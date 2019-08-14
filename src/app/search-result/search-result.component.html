@@ -1,3 +1,8 @@
+<div class="not-found text-center"
+     *ngIf="countResults === 0 ">
+  <h1>Not found :(</h1>
+</div>
+
 <div class="search-results"
      *ngIf="countResults"
      [ngSwitch]="resources">

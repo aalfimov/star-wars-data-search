@@ -12,7 +12,7 @@ import {UniversalData} from '../Interfaces/universal-data';
     styleUrls: ['./search.component.sass'],
 })
 export class SearchComponent implements OnInit {
-    private countResults: number;
+    private countResults: number = null;
     private dataResults: UniversalData[];
     private resources: string;
 
@@ -51,9 +51,10 @@ export class SearchComponent implements OnInit {
 
     private routeDataSubscription() {
         this.route.data.subscribe(results => {
+          if(results.resultsList) {
             this.countResults = results.resultsList.count;
             this.dataResults = results.resultsList.results;
-            console.log(this.resources);
+          }
         });
     }
 }

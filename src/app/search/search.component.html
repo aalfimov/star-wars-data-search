@@ -47,6 +47,7 @@
      *ngIf="countResults"
      [ngSwitch]="resources">
     <div *ngFor="let dataResults of dataResults">
+      <div class="container-card">
         <div id="people card"
              class="card text-center results"
              *ngSwitchCase="'people'">
@@ -259,5 +260,6 @@
                     {{dataResults.url}}</a></div>
             </div>
         </div>
+      </div>
     </div>
 </div>

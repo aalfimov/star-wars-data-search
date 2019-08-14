@@ -17,4 +17,7 @@ export class SearchService {
         {params: {search: searchQuery}});
     }
   }
+  getSearchFromUrl(url) {
+    return this.http.get<SwapiAnswer>(url);
+  }
 }

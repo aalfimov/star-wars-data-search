@@ -2,6 +2,7 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 import {UniversalData} from "../Interfaces/universal-data";
 import {ActivatedRoute} from "@angular/router";
 import {SearchComponent} from "../search/search.component";
+import {SearchService} from "../search.service";
 
 @Component({
   selector: 'app-search-result',

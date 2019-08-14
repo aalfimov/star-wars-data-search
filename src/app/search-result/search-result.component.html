@@ -21,9 +21,10 @@
           <div>Birth year: {{dataResults.birth_year}}</div>
           <div>Gender: {{dataResults.gender}}</div>
           <div>Homeworld:
-            <a href="{{dataResults.homeworld}}">
-              {{dataResults.homeworld}}
-            </a>
+            <app-small-card [url]="dataResults.homeworld"></app-small-card>
+<!--            <a (change)="searchFromUrl(dataResults.homeworld)">-->
+<!--              -->
+<!--            </a>-->
           </div>
           <div>Film:
             <ul class="film" *ngFor="let film of dataResults.films">

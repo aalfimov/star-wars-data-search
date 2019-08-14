@@ -14,7 +14,7 @@ import {UniversalData} from '../Interfaces/universal-data';
 export class SearchComponent implements OnInit {
     private countResults: number = null;
     private dataResults: UniversalData[];
-    private resources: string;
+    resources: string;
 
     constructor(private service: SearchService,
                 private fb: FormBuilder,

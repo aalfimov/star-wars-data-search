@@ -9,18 +9,24 @@ import {UniversalData} from '../Interfaces/universal-data';
 })
 export class SmallCardComponent implements OnInit {
   @Input() private url: string;
-  private dataResults = {name: ''};
-  @Input() private resources = 'peoples';
-  constructor(private service: SearchService) { }
+  @Input() private resources: string;
+  private dataResults = {
+    name: '',
+    title: ''
+  } as UniversalData;
+
+  constructor(private service: SearchService) {
+  }
 
   ngOnInit() {
     this.searchFromUrl();
   }
+
   searchFromUrl() {
     this.service.getSearchFromUrl(this.url).subscribe(results => {
-        if (results.name) {
-          this.dataResults = results;
-        }
+      if (results) {
+        this.dataResults = results;
+      }
     });
   }
 }

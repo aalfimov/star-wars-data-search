@@ -20,18 +20,33 @@
           <div>Eye color: {{dataResults.eye_color}}</div>
           <div>Birth year: {{dataResults.birth_year}}</div>
           <div>Gender: {{dataResults.gender}}</div>
-          <div class="small-card"><h6>Homeworld:</h6><app-small-card [url]="dataResults.homeworld" [resources]="'planets'"></app-small-card></div>
+          <div class="small-card">
+            Homeworld:
+            <app-small-card [url]="dataResults.homeworld"
+                            [resources]="'name'"
+                            class="d-inline-flex">
+            </app-small-card>
+          </div>
           <div>Film:
             <ul class="film" *ngFor="let film of dataResults.films">
-              <li><a href="{{film}}">{{film}}</a></li>
+              <li>
+                <app-small-card [url]="film"
+                                [resources]="'title'"
+                                class="d-inline-flex">
+                </app-small-card>
+              </li>
             </ul>
           </div>
         </div>
         <div class="card-footer text-muted">
           <div>Created: {{dataResults.created | date}}</div>
           <div>Edited: {{dataResults.edited | date}}</div>
-          <div>Url: <a href="{{dataResults.url}}">
-            {{dataResults.url}}</a></div>
+          <div>Url:
+            <app-small-card [url]="dataResults.url"
+                            [resources]="'name'"
+                            class="d-inline-flex">
+            </app-small-card>
+          </div>
         </div>
       </div>
 
@@ -47,35 +62,59 @@
           <div>Release date: {{dataResults.release_date | date}}</div>
           <div>Characters:
             <ul class="characters" *ngFor="let characters of dataResults.characters">
-              <li><a href="{{characters}}">{{characters}}</a></li>
+              <li>
+                <app-small-card [url]="characters"
+                                [resources]="'name'">
+                </app-small-card>
+              </li>
             </ul>
           </div>
           <div>Planets:
             <ul class="planets" *ngFor="let planets of dataResults.planets">
-              <li><a href="{{planets}}">{{planets}}</a></li>
+              <li>
+                <app-small-card [url]="planets"
+                                [resources]="'name'">
+                </app-small-card>
+              </li>
             </ul>
           </div>
           <div>Starships:
             <ul class="starships" *ngFor="let starships of dataResults.starships">
-              <li><a href="{{starships}}">{{starships}}</a></li>
+              <li>
+                <app-small-card [url]="starships"
+                                [resources]="'name'">
+                </app-small-card>
+              </li>
             </ul>
           </div>
           <div>Vehicles:
             <ul class="vehicles" *ngFor="let vehicles of dataResults.vehicles">
-              <li><a href="{{vehicles}}">{{vehicles}}</a></li>
+              <li>
+                <app-small-card [url]="vehicles"
+                                [resources]="'name'">
+                </app-small-card>
+              </li>
             </ul>
           </div>
           <div>Species:
             <ul class="species" *ngFor="let species of dataResults.species">
-              <li><a href="{{species}}">{{species}}</a></li>
+              <li>
+                <app-small-card [url]="species"
+                                [resources]="'name'">
+                </app-small-card>
+              </li>
             </ul>
           </div>
         </div>
         <div class="card-footer text-muted">
-          <div>Created: {{dataResults.created}}</div>
-          <div>Edited: {{dataResults.edited}}</div>
-          <div>Url: <a href="{{dataResults.url}}">
-            {{dataResults.url}}</a></div>
+          <div>Created: {{dataResults.created | date}}</div>
+          <div>Edited: {{dataResults.edited | date}}</div>
+          <div>Url:
+            <app-small-card [url]="dataResults.url"
+                            [resources]="'title'"
+                            class="d-inline-flex">
+            </app-small-card>
+          </div>
         </div>
       </div>
 
@@ -93,21 +132,29 @@
           <div>Terrain: {{dataResults.terrain}}</div>
           <div>Surface water: {{dataResults.surface_water}}</div>
           <div>Residents:
-            <ul class="planets" *ngFor="let residents of dataResults.residents">
-              <li><a href="{{residents}}">{{residents}}</a></li>
+            <ul class="film" *ngFor="let residents of dataResults.residents">
+              <li>
+                <app-small-card [url]="residents"
+                                [resources]="'name'">
+                </app-small-card>
+              </li>
             </ul>
           </div>
           <div>Film:
             <ul class="film" *ngFor="let film of dataResults.films">
-              <li><a href="{{film}}">{{film}}</a></li>
+              <li><app-small-card [url]="film" [resources]="'title'"></app-small-card></li>
             </ul>
           </div>
         </div>
         <div class="card-footer text-muted">
           <div>Created: {{dataResults.created | date}}</div>
           <div>Edited: {{dataResults.edited | date}}</div>
-          <div>Url: <a href="{{dataResults.url}}">
-            {{dataResults.url}}</a></div>
+          <div>Url:
+            <app-small-card [url]="dataResults.url"
+                            [resources]="'name'"
+                            class="d-inline-flex">
+            </app-small-card>
+          </div>
         </div>
       </div>
 
@@ -123,23 +170,38 @@
           <div>Hair colors: {{dataResults.hair_colors}}</div>
           <div>Skin colors: {{dataResults.skin_colors}}</div>
           <div>Language: {{dataResults.language}}</div>
-          <div>Homeworld: {{dataResults.homeworld}}</div>
+          <div class="small-card">
+          Homeworld:
+          <app-small-card [url]="dataResults.homeworld"
+                          [resources]="'name'"
+                          class="d-inline-flex">
+          </app-small-card>
+        </div>
           <div>People:
             <ul class="planets" *ngFor="let people of dataResults.people">
-              <li><a href="{{people}}">{{people}}</a></li>
+              <li>
+                <app-small-card [url]="people"
+                                [resources]="'name'"
+                                class="d-inline-flex">
+                </app-small-card>
+              </li>
             </ul>
           </div>
           <div>Film:
             <ul class="film" *ngFor="let film of dataResults.films">
-              <li><a href="{{film}}">{{film}}</a></li>
+              <li><app-small-card [url]="film" [resources]="'title'"></app-small-card></li>
             </ul>
           </div>
         </div>
         <div class="card-footer text-muted">
           <div>Created: {{dataResults.created | date}}</div>
           <div>Edited: {{dataResults.edited | date}}</div>
-          <div>Url: <a href="{{dataResults.url}}">
-            {{dataResults.url}}</a></div>
+          <div>Url:
+            <app-small-card [url]="dataResults.url"
+                            [resources]="'name'"
+                            class="d-inline-flex">
+            </app-small-card>
+          </div>
         </div>
       </div>
 
@@ -164,20 +226,32 @@
           <div>Consumables: {{dataResults.consumables}}</div>
           <div>Pilots:
             <ul class="planets" *ngFor="let pilots of dataResults.pilots">
-              <li><a href="{{pilots}}">{{pilots}}</a></li>
+              <li>
+                <app-small-card [url]="pilots"
+                                [resources]="'name'">
+                </app-small-card>
+              </li>
             </ul>
           </div>
           <div>Film:
             <ul class="film" *ngFor="let film of dataResults.films">
-              <li><a href="{{film}}">{{film}}</a></li>
+              <li>
+                <app-small-card [url]="film"
+                                [resources]="'title'">
+                </app-small-card>
+              </li>
             </ul>
           </div>
         </div>
         <div class="card-footer text-muted">
           <div>Created: {{dataResults.created | date}}</div>
           <div>Edited: {{dataResults.edited | date}}</div>
-          <div>Url: <a href="{{dataResults.url}}">
-            {{dataResults.url}}</a></div>
+          <div>Url:
+            <app-small-card [url]="dataResults.url"
+                            [resources]="'name'"
+                            class="d-inline-flex">
+            </app-small-card>
+          </div>
         </div>
       </div>
 
@@ -200,20 +274,28 @@
           <div>Consumables: {{dataResults.consumables}}</div>
           <div>Pilots:
             <ul class="planets" *ngFor="let pilots of dataResults.pilots">
-              <li><a href="{{pilots}}">{{pilots}}</a></li>
+              <li>
+                <app-small-card [url]="pilots"
+                                [resources]="'name'">
+                </app-small-card>
+              </li>
             </ul>
           </div>
           <div>Film:
             <ul class="film" *ngFor="let film of dataResults.films">
-              <li><a href="{{film}}">{{film}}</a></li>
+              <li><app-small-card [url]="film" [resources]="'title'"></app-small-card></li>
             </ul>
           </div>
         </div>
         <div class="card-footer text-muted">
           <div>Created: {{dataResults.created | date}}</div>
           <div>Edited: {{dataResults.edited | date}}</div>
-          <div>Url: <a href="{{dataResults.url}}">
-            {{dataResults.url}}</a></div>
+          <div>Url:
+            <app-small-card [url]="dataResults.url"
+                            [resources]="'name'"
+                            class="d-inline-flex">
+            </app-small-card>
+          </div>
         </div>
       </div>
     </div>

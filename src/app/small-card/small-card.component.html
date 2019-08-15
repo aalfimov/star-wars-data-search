@@ -1,8 +1,13 @@
-<div [ngSwitch]="resources">
-    <div *ngSwitchCase="'planets'">
-        <h6 *ngIf="dataResults.name">{{dataResults.name}}</h6>
-    </div>
-    <div *ngSwitchCase="'films'">
-        <h6>{{dataResults.title}}</h6>
-    </div>
+<div class="small-card"
+     [ngSwitch]="resources">
+  <div *ngSwitchCase="'name'">
+    <a href="">
+      <h6>{{dataResults.name}}</h6>
+    </a>
+  </div>
+  <div *ngSwitchCase="'title'">
+    <a href="">
+      <h6>{{dataResults.title}}</h6>
+    </a>
+  </div>
 </div>

@@ -3,8 +3,6 @@ import {SearchService} from '../search.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {AppComponent} from '../app.component';
-import {UniversalData} from '../Interfaces/universal-data';
-
 
 @Component({
   selector: 'app-search',
@@ -12,8 +10,6 @@ import {UniversalData} from '../Interfaces/universal-data';
   styleUrls: ['./search.component.sass'],
 })
 export class SearchComponent implements OnInit {
-  // private countResults: number = null;
-  // private dataResults: UniversalData[];
   private searchForm: FormGroup;
 
   constructor(private service: SearchService,
@@ -31,16 +27,15 @@ export class SearchComponent implements OnInit {
 
   private initForm() {
     this.searchForm = this.fb.group({
-      searchQuery: ['', [Validators.required, Validators.minLength(3)]],
+      searchQuery: ['', [Validators.required]],
     });
   }
-
+ // , Validators.minLength(3)
   private updateValue(search: string) {
     return this.searchForm.setValue({searchQuery: search});
   }
 
   private search() {
     this.appcomp.getSearch(this.searchForm.value.searchQuery);
-    // this.countResults = null;
   }
 }

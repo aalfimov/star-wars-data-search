@@ -11,7 +11,6 @@ export class SearchService {
   private readonly STAR_WARS_URL = 'https://swapi.co/api/';
 
   constructor(private http: HttpClient) {
-    // this.getSearchWithoutResources('dar').subscribe(console.log);
   }
 
   getSearch(resources: string, searchQuery: string) {

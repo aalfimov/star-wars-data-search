@@ -12,9 +12,8 @@ import {UniversalData} from '../Interfaces/universal-data';
   styleUrls: ['./search.component.sass'],
 })
 export class SearchComponent implements OnInit {
-  private countResults: number = null;
-  private dataResults: UniversalData[];
-  private resources: string;
+  // private countResults: number = null;
+  // private dataResults: UniversalData[];
   private searchForm: FormGroup;
 
   constructor(private service: SearchService,
@@ -26,37 +25,22 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.route.queryParamMap.subscribe(params => {
-      this.updateValue(params.get('resource'), params.get('search'));
+      this.updateValue(params.get('search'));
     });
   }
 
   private initForm() {
     this.searchForm = this.fb.group({
-      resources: ['', Validators.required],
-      searchQuery: ['', Validators.required],
+      searchQuery: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
 
-  private updateValue(resource: string, search: string) {
-    this.resources = resource;
-    return this.searchForm.setValue({resources: resource, searchQuery: search});
+  private updateValue(search: string) {
+    return this.searchForm.setValue({searchQuery: search});
   }
 
   private search() {
-    this.appcomp.getSearch(this.searchForm.value.resources, this.searchForm.value.searchQuery);
-    this.resources = this.searchForm.value.resources;
-    this.countResults = null;
-  }
-
-  getResources() {
-    return this.resources;
-  }
-
-  getCountResults() {
-    return this.countResults;
-  }
-
-  getDataResults() {
-    return this.dataResults;
+    this.appcomp.getSearch(this.searchForm.value.searchQuery);
+    // this.countResults = null;
   }
 }

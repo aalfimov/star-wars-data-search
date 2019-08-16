@@ -10,10 +10,9 @@ export class AppComponent {
   constructor(private router: Router) {
   }
 
-  getSearch(resources: string, searchQuery: string) {
+  getSearch(searchQuery: string) {
     this.router.navigate(['home'], {
       queryParams: {
-        resource: resources,
         search: searchQuery
       }
     });

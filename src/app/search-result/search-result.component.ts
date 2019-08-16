@@ -12,7 +12,7 @@ import {SearchService} from '../search.service';
 export class SearchResultComponent implements OnInit {
   private countResults: number = null;
   private dataResults: UniversalData[];
-  private resources: string;
+  // private resources: string;
 
   constructor(private route: ActivatedRoute,
               private searchResources: SearchComponent) {
@@ -23,12 +23,14 @@ export class SearchResultComponent implements OnInit {
   }
 
   private routeDataSubscription() {
-    this.route.data.subscribe(results => {
-      if (results.resultsList) {
-        this.countResults = results.resultsList.count;
-        this.dataResults = results.resultsList.results;
-        this.resources = this.searchResources.getResources();
-      }
-    });
+    this.route.data.subscribe(console.log);
+    // this.route.data.subscribe(results => {
+    //   if (results.resultsList) {
+    //     console.log(results);
+    //     // this.countResults = results.resultsList.count;
+    //     // this.dataResults = results.resultsList.results;
+    //     // this.resources = this.searchResources.getResources();
+    //   }
+    // });
   }
 }

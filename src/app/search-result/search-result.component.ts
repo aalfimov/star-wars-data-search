@@ -4,6 +4,9 @@ import {SwapiAnswer} from "../Interfaces/swapi-answer";
 import {Films} from "../Interfaces/films";
 import {People} from "../Interfaces/people";
 import {Planets} from "../Interfaces/planets";
+import {Species} from "../Interfaces/species";
+import {Starships} from "../Interfaces/starships";
+import {Vehicles} from "../Interfaces/vehicles";
 
 @Component({
   selector: 'app-search-result',
@@ -16,6 +19,9 @@ export class SearchResultComponent implements OnInit {
   private filmsResults: Films[];
   private peopleResults: People[];
   private planetsResults: Planets[];
+  private speciesResults: Species[];
+  private starshipsResults: Starships[];
+  private vehiclesResults: Vehicles[];
 
   constructor(private route: ActivatedRoute) {
   }
@@ -27,13 +33,24 @@ export class SearchResultComponent implements OnInit {
   private routeDataSubscription() {
     this.route.data.subscribe(results => {
       if (results.resultsList) {
+        // this.countResults = this.checkDataCount(results.resultsList);
+        console.log('count: '+ this.countResults);
         // this.dataResults = results.resultsList;
-        console.log(results.resultsList);
         this.filmsResults = results.resultsList[0].results;
         this.peopleResults = results.resultsList[1].results;
         this.planetsResults = results.resultsList[2].results;
+        this.speciesResults = results.resultsList[3].results;
+        this.starshipsResults = results.resultsList[4].results;
+        this.vehiclesResults = results.resultsList[5].results;
       }
     });
-    console.log(this.filmsResults);
   }
+
+  // private checkDataCount(results: any) {
+  //   let count = 0;
+  //   for (let i = 0; results; i++) {
+  //     count = count + results[i].count;
+  //   }
+  //   return count;
+  // }
 }

@@ -27,10 +27,9 @@ export class SearchComponent implements OnInit {
 
   private initForm() {
     this.searchForm = this.fb.group({
-      searchQuery: ['', [Validators.required]],
+      searchQuery: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
- // , Validators.minLength(3)
   private updateValue(search: string) {
     return this.searchForm.setValue({searchQuery: search});
   }

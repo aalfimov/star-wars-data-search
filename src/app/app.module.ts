@@ -6,24 +6,24 @@ import {AppComponent} from './app.component';
 import {SearchComponent} from './search/search.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SearchResultComponent} from './search-result/search-result.component';
-import { SmallCardComponent } from './small-card/small-card.component';
+import {SmallCardComponent} from './small-card/small-card.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SearchComponent,
-    SearchResultComponent,
-    SmallCardComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    HttpClientJsonpModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SearchComponent,
+        SearchResultComponent,
+        SmallCardComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        HttpClientJsonpModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

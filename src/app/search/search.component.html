@@ -1,41 +1,26 @@
 <div class="search-container text-center">
-  <h1>Hello Star Wars fan!</h1>
-  <form class="align-content-sm-center"
-        [formGroup]="searchForm"
-        (submit)="search()">
-    <p>
-      What are you looking for?
-    </p>
-    <div class="search-block">
-      <div class="form-group">
-        <label>
-          <select class="custom-select"
-                  formControlName="resources"
-          >
-            <option value="" disabled selected hidden>
-              Choose...
-            </option>
-            <option value="films">Films</option>
-            <option value="people">People</option>
-            <option value="planets">Planets</option>
-            <option value="species">Species</option>
-            <option value="starships">Starships</option>
-            <option value="vehicles">Vehicles</option>
-          </select>
-        </label>
-        <label>
-          <input class="input-group-text"
-                 formControlName="searchQuery"
-                 type="text">
-        </label>
-        <button class="btn btn-warning"
-                type="submit"
-                [disabled]="!searchForm.valid">
-          search
-        </button>
-      </div>
-    </div>
-  </form>
+    <h1>Hello Star Wars fan!</h1>
+    <form class="align-content-sm-center"
+          [formGroup]="searchForm"
+          (submit)="search()">
+        <p>
+            What are you looking for?
+        </p>
+        <div class="search-block">
+            <div class="form-group">
+                <label>
+                    <input class="input-group-text"
+                           formControlName="searchQuery"
+                           type="text">
+                </label>
+                <button class="btn btn-warning"
+                        type="submit"
+                        [disabled]="!searchForm.valid">
+                    search
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
 
 <app-search-result></app-search-result>

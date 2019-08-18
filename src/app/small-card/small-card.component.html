@@ -1,13 +1,15 @@
 <div class="small-card"
      [ngSwitch]="resources">
-  <div *ngSwitchCase="'name'">
-    <a href="">
-      <h6>{{dataResults.name}}</h6>
-    </a>
-  </div>
-  <div *ngSwitchCase="'title'">
-    <a href="">
-      <h6>{{dataResults.title}}</h6>
-    </a>
-  </div>
+    <div *ngSwitchCase="'name'">
+        <a (click)="search(dataResults.name)"
+           [routerLink]="">
+            <h6>{{dataResults.name}}</h6>
+        </a>
+    </div>
+    <div *ngSwitchCase="'title'">
+        <a (click)="search(dataResults.title)"
+           [routerLink]="">
+            <h6>{{dataResults.title}}</h6>
+        </a>
+    </div>
 </div>

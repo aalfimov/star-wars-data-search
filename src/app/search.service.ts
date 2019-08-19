@@ -3,8 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {SwapiAnswer} from './Interfaces/swapi-answer';
 import {NameOrTitleData} from './Interfaces/universal-data';
 import {forkJoin, throwError} from 'rxjs';
-import {catchError, finalize} from "rxjs/operators";
-import {SearchResultComponent} from "./search-result/search-result.component";
+import {catchError, finalize} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +11,7 @@ import {SearchResultComponent} from "./search-result/search-result.component";
 export class SearchService {
     private readonly STAR_WARS_URL = 'https://swapi.co/api/';
 
-    constructor(private http: HttpClient, private result: SearchResultComponent) {
+    constructor(private http: HttpClient) {
     }
 
     getSearch(resources: string, searchQuery: string) {
@@ -37,6 +36,6 @@ export class SearchService {
             this.getSearch('species', searchQuery),
             this.getSearch('starships', searchQuery),
             this.getSearch('vehicles', searchQuery))
-          .pipe(finalize (() => this.result.changeLoadingSpinner()));
+            .pipe(finalize (() => console.log('done in service')));
     }
 }

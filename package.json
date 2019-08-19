@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
     "bootstrap": "^4.3.1",
+    "firebase-admin": "^8.3.0",
     "jquery": "^3.4.1",
     "mime": "^2.0.3",
     "node.js": "0.0.0",

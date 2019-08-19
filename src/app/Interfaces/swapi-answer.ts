@@ -1,5 +1,3 @@
-import {UniversalData} from "./universal-data";
-
 export interface SwapiAnswer {
     count: number;
     next: string;

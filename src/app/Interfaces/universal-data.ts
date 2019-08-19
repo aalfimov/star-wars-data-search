@@ -57,7 +57,7 @@ export interface UniversalData {
     vehicles: [];
 }
 
-export interface NameOrTitleData{
+export interface NameOrTitleData {
   name?: string;
   title?: string;
 }

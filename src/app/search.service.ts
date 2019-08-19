@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SwapiAnswer} from './Interfaces/swapi-answer';
-import {UniversalData} from './Interfaces/universal-data';
-import {forkJoin} from 'rxjs';
+import {NameOrTitleData} from './Interfaces/universal-data';
+import {forkJoin, throwError} from 'rxjs';
+import {catchError, finalize, pluck} from "rxjs/operators";
 
 @Injectable({
     providedIn: 'root'
@@ -16,12 +17,15 @@ export class SearchService {
     getSearch(resources: string, searchQuery: string) {
         if (resources && searchQuery) {
             return this.http.get<SwapiAnswer>(`${this.STAR_WARS_URL}${resources}/`,
-                {params: {search: searchQuery}});
+                {params: {search: searchQuery}})
+              .pipe(
+                catchError( err => throwError(`An Error Occured ${err}`) )
+              );
         }
     }
 
     getSearchFromUrl(url: string) {
-        return this.http.get<UniversalData>(url);
+        return this.http.get<NameOrTitleData>(url);
     }
 
     getSearchWithoutResources(searchQuery: string) {

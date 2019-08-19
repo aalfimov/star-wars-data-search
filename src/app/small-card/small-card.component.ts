@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SearchService} from '../search.service';
-import {UniversalData} from '../Interfaces/universal-data';
+import {NameOrTitleData} from '../Interfaces/universal-data';
 import {AppComponent} from '../app.component';
 
 @Component({
@@ -14,7 +14,7 @@ export class SmallCardComponent implements OnInit {
     private dataResults = {
         name: '',
         title: ''
-    } as UniversalData;
+    } as NameOrTitleData;
 
     constructor(private service: SearchService, private appcomp: AppComponent) {
     }

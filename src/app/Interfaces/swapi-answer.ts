@@ -1,4 +1,4 @@
-import {UniversalData} from './universal-data';
+import {UniversalData} from "./universal-data";
 
 export interface SwapiAnswer {
     count: number;

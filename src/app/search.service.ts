@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {SwapiAnswer} from './Interfaces/swapi-answer';
 import {NameOrTitleData} from './Interfaces/universal-data';
 import {forkJoin, throwError} from 'rxjs';
-import {catchError, finalize, pluck} from "rxjs/operators";
+import {catchError, finalize} from "rxjs/operators";
 import {SearchResultComponent} from "./search-result/search-result.component";
 
 @Injectable({
@@ -20,7 +20,7 @@ export class SearchService {
             return this.http.get<SwapiAnswer>(`${this.STAR_WARS_URL}${resources}/`,
                 {params: {search: searchQuery}})
               .pipe(
-                catchError( err => throwError(`An Error Occured ${err}`) )
+                catchError( err => throwError(`An Error Occurred ${err}`) )
               );
         }
     }
@@ -37,6 +37,6 @@ export class SearchService {
             this.getSearch('species', searchQuery),
             this.getSearch('starships', searchQuery),
             this.getSearch('vehicles', searchQuery))
-          .pipe(finalize (() => this.result.isLoading = false));
+          .pipe(finalize (() => this.result.changeLoadingSpinner()));
     }
 }

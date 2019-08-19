@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Films} from '../Interfaces/films';
 import {People} from '../Interfaces/people';
@@ -23,12 +23,13 @@ export class SearchResultComponent implements OnInit {
   private starshipsResults: Starships[];
   private vehiclesResults: Vehicles[];
 
-  isLoading =  false;
+  isLoading = false;
 
   // subs: Subscription;
 
   constructor(private route: ActivatedRoute) {
   }
+
   // this.subs = this.route.queryParamMap.subscribe(
   //   data => {
   //     if (data) {
@@ -38,6 +39,10 @@ export class SearchResultComponent implements OnInit {
   // );
   ngOnInit() {
     this.routeDataSubscription();
+  }
+
+  changeLoadingSpinner() {
+    this.isLoading = !this.isLoading;
   }
 
   private routeDataSubscription() {

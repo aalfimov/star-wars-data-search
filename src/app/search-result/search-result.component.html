@@ -3,9 +3,10 @@
     <h1>Not found :(</h1>
 </div>
 
-<!--<div *ngIf="isLoading" class="loader text-center"></div>-->
-<div class="loader"></div>
-<div *ngIf="filmsResults">
+<div *ngIf="isLoading && countResults" class="loader text-center"></div>
+
+
+<div *ngIf="filmsResults && !isLoading">
     <div id="films card"
          class="container-card text-center results"
          *ngFor="let dataResults of filmsResults">

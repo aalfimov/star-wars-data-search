@@ -7,14 +7,13 @@ import {Species} from '../Interfaces/species';
 import {Starships} from '../Interfaces/starships';
 import {Vehicles} from '../Interfaces/vehicles';
 import {SwapiAnswer} from "../Interfaces/swapi-answer";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.sass']
 })
-export class SearchResultComponent implements OnInit, OnDestroy {
+export class SearchResultComponent implements OnInit {
 
   private countResults: number = null;
   private filmsResults: Films[];
@@ -24,20 +23,20 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   private starshipsResults: Starships[];
   private vehiclesResults: Vehicles[];
 
-  isLoading: boolean = false;
-  subs: Subscription;
+  isLoading =  false;
+
+  // subs: Subscription;
 
   constructor(private route: ActivatedRoute) {
   }
-
+  // this.subs = this.route.queryParamMap.subscribe(
+  //   data => {
+  //     if (data) {
+  //       this.routeDataSubscription();
+  //     }
+  //   }
+  // );
   ngOnInit() {
-    // this.subs = this.route.queryParamMap.subscribe(
-    //   data => {
-    //     if (data) {
-    //       this.routeDataSubscription();
-    //     }
-    //   }
-    // );
     this.routeDataSubscription();
   }
 
@@ -53,8 +52,12 @@ export class SearchResultComponent implements OnInit, OnDestroy {
           this.starshipsResults = results.resultsList[4].results;
           this.vehiclesResults = results.resultsList[5].results;
         }
-      }, error => console.log('Error!' + error),
-      () => this.isLoading = false);
+      }, error => {
+        console.log('Error!' + error)
+      },
+      () => {
+        console.log('done');
+      })
   }
 
   private sumDataCounter(results: SwapiAnswer[]) {
@@ -63,7 +66,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
     return count;
   }
 
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   // this.subs.unsubscribe();
+  // }
 }

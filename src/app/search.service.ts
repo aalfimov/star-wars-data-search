@@ -4,6 +4,7 @@ import {SwapiAnswer} from './Interfaces/swapi-answer';
 import {NameOrTitleData} from './Interfaces/universal-data';
 import {forkJoin, throwError} from 'rxjs';
 import {catchError, finalize, pluck} from "rxjs/operators";
+import {SearchResultComponent} from "./search-result/search-result.component";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ import {catchError, finalize, pluck} from "rxjs/operators";
 export class SearchService {
     private readonly STAR_WARS_URL = 'https://swapi.co/api/';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private result: SearchResultComponent) {
     }
 
     getSearch(resources: string, searchQuery: string) {
@@ -35,6 +36,7 @@ export class SearchService {
             this.getSearch('planets', searchQuery),
             this.getSearch('species', searchQuery),
             this.getSearch('starships', searchQuery),
-            this.getSearch('vehicles', searchQuery));
+            this.getSearch('vehicles', searchQuery))
+          .pipe(finalize (() => this.result.isLoading = false));
     }
 }

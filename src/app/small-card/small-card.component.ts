@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {SearchService} from '../search.service';
 import {NameOrTitleData} from '../Interfaces/universal-data';
 import {AppComponent} from '../app.component';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-small-card',
@@ -25,14 +26,18 @@ export class SmallCardComponent implements OnInit {
   }
 
   searchFromUrl() {
-    this.service.getSearchFromUrl(this.url).subscribe(results => {
+    this.service.incrementIsLoadingCounter();
+    this.service.getSearchFromUrl(this.url)
+      .pipe(
+        finalize(() => this.service.decrementIsLoadingCounter()))
+      .subscribe(results => {
       if (results) {
         this.dataResults = results;
       }
     });
   }
 
-  private search(searchParams) {
+  private search(searchParams: string) {
     this.appcomp.getSearch(searchParams);
   }
 }

@@ -15,7 +15,6 @@ import {SearchService} from '../search.service';
   styleUrls: ['./search-result.component.sass']
 })
 export class SearchResultComponent implements OnInit {
-
   private countResults: number = null;
   private filmsResults: Films[];
   private peopleResults: People[];

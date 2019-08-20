@@ -3,10 +3,7 @@
     <h1>Not found :(</h1>
 </div>
 
-<div *ngIf="isLoading && countResults" class="loader text-center"></div>
-
-
-<div *ngIf="filmsResults && !isLoading">
+<div *ngIf="filmsResults">
     <div id="films card"
          class="container-card text-center results"
          *ngFor="let dataResults of filmsResults">
@@ -328,3 +325,6 @@
     </div>
 </div>
 
+<div *ngIf="service.getIsLoadingCounter() && countResults > 0" class="light-box">
+  <div class="loader-spinner"></div>
+</div>

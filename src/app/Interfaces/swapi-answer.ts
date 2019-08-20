@@ -5,5 +5,6 @@ export interface SwapiAnswer {
   results: [];
 }
 export interface FinishData {
+  count: number;
   finished: boolean;
 }

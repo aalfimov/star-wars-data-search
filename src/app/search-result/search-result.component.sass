@@ -6,17 +6,28 @@ ul
   margin: 0
   padding: 0
 
-.loader
+.loader-spinner
   border: 16px solid black
   border-radius: 50%
   border-top: 16px solid yellow
   width: 120px
   height: 120px
-  -webkit-animation: spin 2s linear infinite
-  animation: spin 2s linear infinite
+  -webkit-animation: spin 0.5s linear infinite
+  animation: spin 0.5s linear infinite
 
 @keyframes spin
   0%
     transform: rotate(0deg)
   100%
     transform: rotate(360deg)
+
+.light-box
+  position: fixed
+  top: 0
+  left: 0
+  background: rgba(0, 0, 0, .5) no-repeat center
+  min-width: 100vw
+  min-height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center

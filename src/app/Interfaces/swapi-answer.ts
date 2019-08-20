@@ -4,7 +4,7 @@ export interface SwapiAnswer {
   previous: string;
   results: [];
 }
-export interface FinishData {
+
+export interface SwapiCountAnswer {
   count: number;
-  finished: boolean;
 }

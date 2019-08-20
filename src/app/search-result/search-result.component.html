@@ -325,6 +325,6 @@
     </div>
 </div>
 
-<div *ngIf="service.getIsLoadingCounter() && countResults > 0" class="light-box">
+<div *ngIf="checkLoadSpinner()" class="light-box">
   <div class="loader-spinner"></div>
 </div>

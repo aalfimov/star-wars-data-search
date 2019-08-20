@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SwapiAnswer} from './Interfaces/swapi-answer';
 import {NameOrTitleData} from './Interfaces/universal-data';
-import {forkJoin, throwError} from 'rxjs';
-import {catchError, finalize} from 'rxjs/operators';
+import {forkJoin, of, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -35,7 +35,7 @@ export class SearchService {
             this.getSearch('planets', searchQuery),
             this.getSearch('species', searchQuery),
             this.getSearch('starships', searchQuery),
-            this.getSearch('vehicles', searchQuery))
-            .pipe(finalize (() => console.log('done in service')));
+            this.getSearch('vehicles', searchQuery),
+            of( {finished: true} as SwapiAnswer))
     }
 }

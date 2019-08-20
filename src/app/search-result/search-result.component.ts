@@ -22,33 +22,21 @@ export class SearchResultComponent implements OnInit {
   private speciesResults: Species[];
   private starshipsResults: Starships[];
   private vehiclesResults: Vehicles[];
-
-  isLoading = false;
-
-  // subs: Subscription;
+  private isLoading = false;
 
   constructor(private route: ActivatedRoute) {
   }
 
-  // this.subs = this.route.queryParamMap.subscribe(
-  //   data => {
-  //     if (data) {
-  //       this.routeDataSubscription();
-  //     }
-  //   }
-  // );
+
   ngOnInit() {
     this.routeDataSubscription();
-  }
-
-  changeLoadingSpinner() {
-    this.isLoading = !this.isLoading;
   }
 
   private routeDataSubscription() {
     this.isLoading = true;
     this.route.data.subscribe(results => {
         if (results.resultsList) {
+          console.log(results.resultsList);
           this.countResults = this.sumDataCounter(results.resultsList);
           this.filmsResults = results.resultsList[0].results;
           this.peopleResults = results.resultsList[1].results;
@@ -56,12 +44,13 @@ export class SearchResultComponent implements OnInit {
           this.speciesResults = results.resultsList[3].results;
           this.starshipsResults = results.resultsList[4].results;
           this.vehiclesResults = results.resultsList[5].results;
+          this.isLoading = !results.resultsList[6].finished;
         }
       }, error => {
         console.log('Error!' + error)
       },
       () => {
-        console.log('done');
+        console.log('done in component');
       })
   }
 
@@ -70,8 +59,4 @@ export class SearchResultComponent implements OnInit {
     results.forEach((obj => count += obj.count));
     return count;
   }
-
-  // ngOnDestroy(): void {
-  //   // this.subs.unsubscribe();
-  // }
 }

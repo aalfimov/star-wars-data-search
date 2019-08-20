@@ -3,5 +3,7 @@ export interface SwapiAnswer {
   next: string;
   previous: string;
   results: [];
-  finished: boolean
+}
+export interface FinishData {
+  finished: boolean;
 }

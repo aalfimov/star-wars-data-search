@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {SwapiAnswer} from './Interfaces/swapi-answer';
+import {FinishData, SwapiAnswer} from './Interfaces/swapi-answer';
 import {NameOrTitleData} from './Interfaces/universal-data';
 import {forkJoin, of, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
@@ -36,6 +36,6 @@ export class SearchService {
             this.getSearch('species', searchQuery),
             this.getSearch('starships', searchQuery),
             this.getSearch('vehicles', searchQuery),
-            of( {finished: true} as SwapiAnswer))
+            of( {finished: true} as FinishData))
     }
 }

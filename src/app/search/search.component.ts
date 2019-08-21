@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
     constructor(private service: SearchService,
                 private fb: FormBuilder,
                 private route: ActivatedRoute,
-                private appcomp: AppComponent) {
+                private appComp: AppComponent) {
     }
 
     ngOnInit() {
@@ -36,6 +36,6 @@ export class SearchComponent implements OnInit {
     }
 
     private search() {
-        this.appcomp.getSearch(this.searchForm.value.searchQuery);
+        this.appComp.getSearch(this.searchForm.value.searchQuery);
     }
 }

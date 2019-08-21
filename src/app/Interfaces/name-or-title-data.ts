@@ -1,4 +1,4 @@
 export interface NameOrTitleData {
-  name?: string;
-  title?: string;
+  name: string;
+  title: string;
 }

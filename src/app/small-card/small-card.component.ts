@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SearchService} from '../search.service';
 import {AppComponent} from '../app.component';
-import {finalize} from 'rxjs/operators';
 import {NameOrTitleData} from '../Interfaces/name-or-title-data';
 
 @Component({
@@ -18,7 +17,7 @@ export class SmallCardComponent implements OnInit {
   } as NameOrTitleData;
 
   constructor(private service: SearchService,
-              private appcomp: AppComponent) {
+              private appComp: AppComponent) {
   }
 
   ngOnInit() {
@@ -28,16 +27,15 @@ export class SmallCardComponent implements OnInit {
   searchFromUrl() {
     this.service.incrementIsLoadingCounter();
     this.service.getSearchFromUrl(this.url)
-      .pipe(
-        finalize(() => this.service.decrementIsLoadingCounter()))
       .subscribe(results => {
-      if (results) {
-        this.dataResults = results;
-      }
-    });
+        if (results) {
+          this.dataResults = results;
+        }
+      }, error => console.log(error),
+        () => this.service.decrementIsLoadingCounter());
   }
 
   private search(searchParams: string) {
-    this.appcomp.getSearch(searchParams);
+    this.appComp.getSearch(searchParams);
   }
 }

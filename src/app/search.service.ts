@@ -25,16 +25,6 @@ export class SearchService {
     return this.http.get<NameOrTitleData>(url);
   }
 
-  getSearchWithoutResources(searchQuery: string) {
-    return zip(
-      this.getSearch('films', searchQuery),
-      this.getSearch('people', searchQuery),
-      this.getSearch('planets', searchQuery),
-      this.getSearch('species', searchQuery),
-      this.getSearch('starships', searchQuery),
-      this.getSearch('vehicles', searchQuery));
-  }
-
   getSearchWithoutResourcesDict(searchQuery: string) {
     return forkJoin({
       films: this.getSearch('films', searchQuery),

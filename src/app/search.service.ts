@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SwapiAnswer} from './Interfaces/swapi-answer';
-import {forkJoin} from 'rxjs';
+import {forkJoin, zip} from 'rxjs';
 import {NameOrTitleData} from './Interfaces/name-or-title-data';
 
 @Injectable({
@@ -26,7 +26,7 @@ export class SearchService {
   }
 
   getSearchWithoutResources(searchQuery: string) {
-    return forkJoin(
+    return zip(
       this.getSearch('films', searchQuery),
       this.getSearch('people', searchQuery),
       this.getSearch('planets', searchQuery),
@@ -35,11 +35,22 @@ export class SearchService {
       this.getSearch('vehicles', searchQuery));
   }
 
-  incrementIsLoadingCounter(){
+  getSearchWithoutResourcesDict(searchQuery: string) {
+    return forkJoin({
+      films: this.getSearch('films', searchQuery),
+      people: this.getSearch('people', searchQuery),
+      planets: this.getSearch('planets', searchQuery),
+      species: this.getSearch('species', searchQuery),
+      starships: this.getSearch('starships', searchQuery),
+      vehicles: this.getSearch('vehicles', searchQuery)
+    })
+  }
+
+  incrementIsLoadingCounter() {
     this.isLoadingCounter++;
   }
 
-  decrementIsLoadingCounter(){
+  decrementIsLoadingCounter() {
     this.isLoadingCounter--;
   }
 

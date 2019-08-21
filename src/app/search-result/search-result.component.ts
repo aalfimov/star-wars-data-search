@@ -8,6 +8,7 @@ import {Starships} from '../Interfaces/starships';
 import {Vehicles} from '../Interfaces/vehicles';
 import {SearchService} from '../search.service';
 import {SwapiCountAnswer} from '../Interfaces/swapi-count-answer';
+import {ResultsData} from "../Interfaces/results-data";
 
 @Component({
   selector: 'app-search-result',
@@ -23,6 +24,7 @@ export class SearchResultComponent implements OnInit {
   private speciesResults: Species[];
   private starshipsResults: Starships[];
   private vehiclesResults: Vehicles[];
+  private resultsData: ResultsData;
 
   constructor(private route: ActivatedRoute,
               private service: SearchService,
@@ -35,21 +37,34 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit() {
     this.routeDataSubscription();
+    // this.service.getSearchWithoutResourcesDict('hope')
+    //   .subscribe(res => {
+    //     console.log(res);
+    //     this.resultsData = res;
+    //   });
   }
 
   private routeDataSubscription() {
     this.route.data.subscribe(results => {
-      if (results.resultsList) {
-        this.countResults = this.sumDataCounter(results.resultsList);
-        if (this.countResults > 0) {
-          this.filmsResults = results.resultsList[0].results;
-          this.peopleResults = results.resultsList[1].results;
-          this.planetsResults = results.resultsList[2].results;
-          this.speciesResults = results.resultsList[3].results;
-          this.starshipsResults = results.resultsList[4].results;
-          this.vehiclesResults = results.resultsList[5].results;
-        }
-      }
+      this.resultsData = results.resultsList;
+      const countTheResultsFromSwapi = this.resultsData.films.count
+        + this.resultsData.people.count
+        + this.resultsData.planets.count
+        + this.resultsData.species.count
+        + this.resultsData.starships.count
+        + this.resultsData.vehicles.count;
+      this.countResults = countTheResultsFromSwapi;
+      // if (results.resultsList) {
+      //   this.countResults = this.sumDataCounter(results.resultsList);
+      //   if (this.countResults > 0) {
+      //     this.filmsResults = results.resultsList[0].results;
+      //     this.peopleResults = results.resultsList[1].results;
+      //     this.planetsResults = results.resultsList[2].results;
+      //     this.speciesResults = results.resultsList[3].results;
+      //     this.starshipsResults = results.resultsList[4].results;
+      //     this.vehiclesResults = results.resultsList[5].results;
+      //   }
+      // }
     });
   }
 
@@ -64,6 +79,6 @@ export class SearchResultComponent implements OnInit {
   }
 
   checkLoadSpinner() {
-    return this.service.getIsLoading() && this.countResults > 0;
+    return this.service.getIsLoading();
   }
 }

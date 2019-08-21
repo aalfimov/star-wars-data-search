@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "swapi-app-ukr",
     "public": "public",
     "ignore": [
       "firebase.json",

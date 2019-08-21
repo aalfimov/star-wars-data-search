@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SearchService} from '../search.service';
 import {ResultsData} from '../Interfaces/results-data';
-import {AppComponent} from "../app.component";
+
 
 @Component({
   selector: 'app-search-result',
@@ -29,13 +29,15 @@ export class SearchResultComponent implements OnInit {
 
   private routeDataSubscription() {
     this.route.data.subscribe(results => {
-      this.resultsData = results.resultsList;
-      this.countResults = this.resultsData.films.count
-        + this.resultsData.people.count
-        + this.resultsData.planets.count
-        + this.resultsData.species.count
-        + this.resultsData.starships.count
-        + this.resultsData.vehicles.count;
+      if (results.resultsList) {
+        this.resultsData = results.resultsList;
+        this.countResults = this.resultsData.films.count
+            + this.resultsData.people.count
+            + this.resultsData.planets.count
+            + this.resultsData.species.count
+            + this.resultsData.starships.count
+            + this.resultsData.vehicles.count;
+      }
     });
   }
 

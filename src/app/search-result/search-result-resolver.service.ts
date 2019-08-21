@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {SearchService} from '../search.service';
-import {ResultsData} from "../Interfaces/results-data";
+import {ResultsData} from '../Interfaces/results-data';
 
 @Injectable({
     providedIn: 'root'

@@ -15,7 +15,7 @@ export class SearchResultResolver implements Resolve<Observable<ResultsData>> {
     resolve(route: ActivatedRouteSnapshot): Observable<ResultsData> {
         const searchQuery = route.queryParamMap.get('search');
         if (searchQuery) {
-            return this.searchService.getSearchWithoutResourcesDict(searchQuery);
+            return this.searchService.getSearchWithoutResources(searchQuery);
         }
         return;
     }

@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SearchService} from '../search.service';
 import {ResultsData} from '../Interfaces/results-data';
+import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-search-result',
@@ -19,7 +20,7 @@ export class SearchResultComponent implements OnInit {
     ref.detach();
     setInterval(() => {
       this.ref.detectChanges();
-    }, 10);
+    }, 100);
   }
 
   ngOnInit() {

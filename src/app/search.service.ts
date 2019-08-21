@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SwapiAnswer} from './Interfaces/swapi-answer';
-import {forkJoin, zip} from 'rxjs';
+import {forkJoin} from 'rxjs';
 import {NameOrTitleData} from './Interfaces/name-or-title-data';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class SearchService {
     return this.http.get<NameOrTitleData>(url);
   }
 
-  getSearchWithoutResourcesDict(searchQuery: string) {
+  getSearchWithoutResources(searchQuery: string) {
     return forkJoin({
       films: this.getSearch('films', searchQuery),
       people: this.getSearch('people', searchQuery),

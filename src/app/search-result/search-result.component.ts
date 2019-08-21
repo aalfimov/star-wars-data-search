@@ -6,8 +6,8 @@ import {Planets} from '../Interfaces/planets';
 import {Species} from '../Interfaces/species';
 import {Starships} from '../Interfaces/starships';
 import {Vehicles} from '../Interfaces/vehicles';
-import {SwapiCountAnswer} from '../Interfaces/swapi-answer';
 import {SearchService} from '../search.service';
+import {SwapiCountAnswer} from '../Interfaces/swapi-count-answer';
 
 @Component({
   selector: 'app-search-result',
@@ -15,6 +15,7 @@ import {SearchService} from '../search.service';
   styleUrls: ['./search-result.component.sass']
 })
 export class SearchResultComponent implements OnInit {
+
   private countResults: number = null;
   private filmsResults: Films[];
   private peopleResults: People[];
@@ -29,7 +30,7 @@ export class SearchResultComponent implements OnInit {
     ref.detach();
     setInterval(() => {
       this.ref.detectChanges();
-    }, 100);
+    }, 10);
   }
 
   ngOnInit() {
@@ -52,6 +53,10 @@ export class SearchResultComponent implements OnInit {
     });
   }
 
+  /**
+   * count the results from swapi
+   * @param results - if 0 == no found result
+   */
   private sumDataCounter(results: SwapiCountAnswer[]) {
     let count = 0;
     results.forEach((obj => count += obj.count));

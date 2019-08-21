@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SwapiAnswer} from './Interfaces/swapi-answer';
-import {NameOrTitleData} from './Interfaces/universal-data';
 import {forkJoin} from 'rxjs';
+import {NameOrTitleData} from './Interfaces/name-or-title-data';
 
 @Injectable({
   providedIn: 'root'
@@ -47,3 +47,4 @@ export class SearchService {
     return this.isLoadingCounter > 0;
   }
 }
+

@@ -3,13 +3,10 @@
     <form class="align-content-sm-center"
           [formGroup]="searchForm"
           (submit)="search()">
-        <p>
-            What are you looking for?
-        </p>
         <div class="search-block">
             <div class="form-group">
-                <label>
-                    <input class="input-group-text"
+                <label>What are you looking for?
+                    <input class="form-control"
                            formControlName="searchQuery"
                            type="text">
                 </label>

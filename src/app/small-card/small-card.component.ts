@@ -10,7 +10,7 @@ import {NameOrTitleData} from '../Interfaces/name-or-title-data';
 })
 export class SmallCardComponent implements OnInit {
   @Input() private url: string;
-  @Input() private resources: string;
+  @Input() resources: string;
   private dataResults = {
     name: '',
     title: ''

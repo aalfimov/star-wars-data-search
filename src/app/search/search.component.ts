@@ -10,7 +10,7 @@ import {AppComponent} from '../app.component';
     styleUrls: ['./search.component.sass'],
 })
 export class SearchComponent implements OnInit {
-    private searchForm: FormGroup;
+    searchForm: FormGroup;
 
     constructor(private service: SearchService,
                 private fb: FormBuilder,
@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
         return this.searchForm.setValue({searchQuery: search});
     }
 
-    private search() {
+    search() {
         this.appComp.getSearch(this.searchForm.value.searchQuery);
     }
 }

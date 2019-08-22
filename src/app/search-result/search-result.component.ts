@@ -11,8 +11,8 @@ import {ResultsData} from '../Interfaces/results-data';
 })
 export class SearchResultComponent implements OnInit {
 
-  private countResults: number = null;
-  private resultsData: ResultsData;
+  countResults: number = null;
+  resultsData: ResultsData;
 
   constructor(private route: ActivatedRoute,
               private service: SearchService,

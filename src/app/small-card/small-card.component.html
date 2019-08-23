@@ -1,15 +1,32 @@
+<!--<div class="small-card"-->
+<!--     [ngSwitch]="resources">-->
+<!--    <div *ngSwitchCase="'name'">-->
+<!--        <a (click)="search(dataResults.name)"-->
+<!--           [routerLink]="">-->
+<!--            <h6>{{dataResults.name}}</h6>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div *ngSwitchCase="'title'">-->
+<!--        <a (click)="search(dataResults.title)"-->
+<!--           [routerLink]="">-->
+<!--            <h6>{{dataResults.title}}</h6>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--</div>-->
 <div class="small-card"
      [ngSwitch]="resources">
-    <div *ngSwitchCase="'name'">
-        <a (click)="search(dataResults.name)"
-           [routerLink]="">
-            <h6>{{dataResults.name}}</h6>
-        </a>
+  <div *ngSwitchCase="'name'">
+    <div class="my-link"
+         (click)="search(dataResults.name)"
+         [routerLink]="">
+      <h6>{{dataResults.name}}</h6>
     </div>
-    <div *ngSwitchCase="'title'">
-        <a (click)="search(dataResults.title)"
-           [routerLink]="">
-            <h6>{{dataResults.title}}</h6>
-        </a>
+  </div>
+  <div class="my-link"
+       *ngSwitchCase="'title'">
+    <div (click)="search(dataResults.title)"
+         [routerLink]="">
+      <h6>{{dataResults.title}}</h6>
     </div>
+  </div>
 </div>

@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
     styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+    title = '';
     constructor(private router: Router) {
     }
 

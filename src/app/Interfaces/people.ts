@@ -16,3 +16,10 @@ export interface People {
     edited: string;
     url: string;
 }
+
+export interface PeopleResults {
+  count: number;
+  next: string;
+  previous: string;
+  results: People[];
+}

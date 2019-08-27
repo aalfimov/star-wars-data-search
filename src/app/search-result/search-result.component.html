@@ -4,9 +4,9 @@
 </div>
 
 <div *ngIf="resultsData">
-  <div *ngIf="resultsData.films.count > 0">
+  <div *ngIf="filmsResult.count > 0">
     <div class="container-card text-center results"
-         *ngFor="let dataResults of resultsData.films.results">
+         *ngFor="let dataResults of filmsResult.results">
       <div class="card">
         <div class="card-header">Title: {{dataResults.title}}</div>
         <div class="card-body">
@@ -75,9 +75,9 @@
     </div>
   </div>
 
-  <div *ngIf="resultsData.people.count > 0">
+  <div *ngIf="peopleResult.count > 0">
     <div class="container-card text-center results"
-         *ngFor="let dataResults of resultsData.people.results">
+         *ngFor="let dataResults of peopleResult.results">
       <div class="card">
         <div class="card-header">Name: {{dataResults.name}}</div>
         <div class="card-body">
@@ -95,10 +95,40 @@
                             class="d-inline-flex">
             </app-small-card>
           </div>
-          <div>Film:
+          <div *ngIf="dataResults.films">Film:
             <ul class="film" *ngFor="let film of dataResults.films">
               <li>
                 <app-small-card [url]="film"
+                                [resources]="'title'"
+                                class="d-inline-flex">
+                </app-small-card>
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="dataResults.species">Species:
+            <ul class="film" *ngFor="let species of dataResults.species">
+              <li>
+                <app-small-card [url]="species"
+                                [resources]="'title'"
+                                class="d-inline-flex">
+                </app-small-card>
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="dataResults.vehicles > 0">Vehicles:
+            <ul class="film" *ngFor="let vehicle of dataResults.vehicles">
+              <li>
+                <app-small-card [url]="vehicle"
+                                [resources]="'title'"
+                                class="d-inline-flex">
+                </app-small-card>
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="dataResults.starships > 0">Starships:
+            <ul class="film" *ngFor="let starships of dataResults.starships">
+              <li>
+                <app-small-card [url]="starships"
                                 [resources]="'title'"
                                 class="d-inline-flex">
                 </app-small-card>
@@ -120,9 +150,9 @@
     </div>
   </div>
 
-  <div *ngIf="resultsData.planets.count > 0">
+  <div *ngIf="planetsResult.count > 0">
     <div class="container-card text-center results"
-         *ngFor="let dataResults of resultsData.planets.results">
+         *ngFor="let dataResults of planetsResult.results">
       <div class="card">
         <div class="card-header">Name: {{dataResults.name}}</div>
         <div class="card-body">
@@ -165,9 +195,9 @@
     </div>
   </div>
 
-  <div *ngIf="resultsData.species.count > 0">
+  <div *ngIf="speciesResult.count > 0">
     <div class="container-card text-center results"
-         *ngFor="let dataResults of resultsData.species.results">
+         *ngFor="let dataResults of speciesResult.results">
       <div class="card">
 
         <div class="card-header">Name: {{dataResults.name}}</div>
@@ -218,9 +248,9 @@
     </div>
   </div>
 
-  <div *ngIf="resultsData.starships.count > 0">
+  <div *ngIf="starshipsResult.count > 0">
     <div class="container-card text-center results"
-         *ngFor="let dataResults of resultsData.starships.results">
+         *ngFor="let dataResults of starshipsResult.results">
       <div class="card">
         <div class="card-header">
           <div>Name: {{dataResults.name}}</div>
@@ -271,9 +301,9 @@
     </div>
   </div>
 
-  <div *ngIf="resultsData.vehicles.count > 0">
+  <div *ngIf="vesiclesResult.count > 0">
     <div class="container-card text-center results"
-         *ngFor="let dataResults of resultsData.vehicles.results">
+         *ngFor="let dataResults of vesiclesResult.results">
       <div class="card">
         <div class="card-header">
           <div>Name: {{dataResults.name}}</div>

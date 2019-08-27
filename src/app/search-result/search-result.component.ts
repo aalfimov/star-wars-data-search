@@ -2,6 +2,12 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SearchService} from '../search.service';
 import {ResultsData} from '../Interfaces/results-data';
+import {Films, FilmsResults} from "../Interfaces/films";
+import {People, PeopleResults} from "../Interfaces/people";
+import {Planets, PlanetsResults} from "../Interfaces/planets";
+import {Species, SpeciesResults} from "../Interfaces/species";
+import {Starships, StarshipsResults} from "../Interfaces/starships";
+import {Vehicles, VehiclesResults} from "../Interfaces/vehicles";
 
 
 @Component({
@@ -12,7 +18,14 @@ import {ResultsData} from '../Interfaces/results-data';
 export class SearchResultComponent implements OnInit {
 
   countResults: number = null;
-  resultsData: ResultsData;
+  resultsData: boolean;
+
+  filmsResult: FilmsResults;
+  peopleResult: PeopleResults;
+  planetsResult: PlanetsResults;
+  speciesResult: SpeciesResults;
+  starshipsResult: StarshipsResults;
+  vesiclesResult: VehiclesResults;
 
   constructor(private route: ActivatedRoute,
               private service: SearchService,
@@ -30,13 +43,20 @@ export class SearchResultComponent implements OnInit {
   private routeDataSubscription() {
     this.route.data.subscribe(results => {
       if (results.resultsList) {
-        this.resultsData = results.resultsList;
-        this.countResults = this.resultsData.films.count
-            + this.resultsData.people.count
-            + this.resultsData.planets.count
-            + this.resultsData.species.count
-            + this.resultsData.starships.count
-            + this.resultsData.vehicles.count;
+        this.filmsResult = results.resultsList.films;
+        this.peopleResult = results.resultsList.people;
+        this.planetsResult = results.resultsList.planets;
+        this.speciesResult = results.resultsList.species;
+        this.starshipsResult = results.resultsList.starships;
+        this.vesiclesResult = results.resultsList.vehicles;
+
+        this.resultsData = true;
+        this.countResults = this.filmsResult.count
+            + this.peopleResult.count
+            + this.planetsResult.count
+            + this.speciesResult.count
+            + this.starshipsResult.count
+            + this.vesiclesResult.count;
       }
     });
   }

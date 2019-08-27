@@ -18,3 +18,10 @@ export interface Starships {
     created: string;
     edited: string;
 }
+
+export interface StarshipsResults {
+  count: number;
+  next: string;
+  previous: string;
+  results: Starships[];
+}

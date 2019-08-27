@@ -16,3 +16,10 @@ export interface Vehicles {
     created: string;
     edited: string;
 }
+
+export interface VehiclesResults {
+  count: number;
+  next: string;
+  previous: string;
+  results: Vehicles[];
+}

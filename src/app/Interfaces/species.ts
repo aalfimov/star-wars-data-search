@@ -15,3 +15,9 @@ export interface Species {
     created: string;
     edited: string;
 }
+export interface SpeciesResults {
+  count: number;
+  next: string;
+  previous: string;
+  results: Species[];
+}

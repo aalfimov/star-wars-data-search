@@ -95,7 +95,7 @@
                             class="d-inline-flex">
             </app-small-card>
           </div>
-          <div *ngIf="dataResults.films">Film:
+          <div>Film:
             <ul class="film" *ngFor="let film of dataResults.films">
               <li>
                 <app-small-card [url]="film"
@@ -105,7 +105,7 @@
               </li>
             </ul>
           </div>
-          <div *ngIf="dataResults.species">Species:
+          <div>Species:
             <ul class="film" *ngFor="let species of dataResults.species">
               <li>
                 <app-small-card [url]="species"
@@ -115,7 +115,7 @@
               </li>
             </ul>
           </div>
-          <div *ngIf="dataResults.vehicles > 0">Vehicles:
+          <div>Vehicles:
             <ul class="film" *ngFor="let vehicle of dataResults.vehicles">
               <li>
                 <app-small-card [url]="vehicle"
@@ -125,7 +125,7 @@
               </li>
             </ul>
           </div>
-          <div *ngIf="dataResults.starships > 0">Starships:
+          <div>Starships:
             <ul class="film" *ngFor="let starships of dataResults.starships">
               <li>
                 <app-small-card [url]="starships"

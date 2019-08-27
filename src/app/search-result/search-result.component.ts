@@ -1,14 +1,12 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SearchService} from '../search.service';
-import {ResultsData} from '../Interfaces/results-data';
-import {Films, FilmsResults} from "../Interfaces/films";
-import {People, PeopleResults} from "../Interfaces/people";
-import {Planets, PlanetsResults} from "../Interfaces/planets";
-import {Species, SpeciesResults} from "../Interfaces/species";
-import {Starships, StarshipsResults} from "../Interfaces/starships";
-import {Vehicles, VehiclesResults} from "../Interfaces/vehicles";
-
+import {FilmsResults} from "../Interfaces/films";
+import {PeopleResults} from "../Interfaces/people";
+import {PlanetsResults} from "../Interfaces/planets";
+import {SpeciesResults} from "../Interfaces/species";
+import {StarshipsResults} from "../Interfaces/starships";
+import {VehiclesResults} from "../Interfaces/vehicles";
 
 @Component({
   selector: 'app-search-result',
@@ -49,7 +47,6 @@ export class SearchResultComponent implements OnInit {
         this.speciesResult = results.resultsList.species;
         this.starshipsResult = results.resultsList.starships;
         this.vesiclesResult = results.resultsList.vehicles;
-
         this.resultsData = true;
         this.countResults = this.filmsResult.count
             + this.peopleResult.count
